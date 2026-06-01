@@ -1,0 +1,614 @@
+/* AnalysisResult — AURA Light Theme */
+
+.wrapper {
+  min-height: 100vh;
+  background: radial-gradient(circle at 10% 20%, rgba(242,218,255,0.4) 0%, rgba(250,248,255,1) 90%);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #1a1b20;
+  transition: background 0.1s ease;
+}
+
+/* ── Header ── */
+.pageHeader {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 40px 0;
+}
+
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: #7d7480;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-bottom: 24px;
+  transition: color 0.2s;
+  padding: 0;
+}
+.backBtn:hover { color: #754c97; }
+
+/* Hero grid */
+.heroGrid {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 40px;
+  align-items: start;
+  padding-bottom: 80px;
+}
+
+.heroPhoto { position: relative; }
+
+.photoCard {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(117,76,151,0.15);
+}
+
+.photoImg {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s ease;
+}
+.photoCard:hover .photoImg { transform: scale(1.03); }
+
+.photoBadge {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #e0b6ff 0%, #ec3e86 100%);
+  color: white;
+  padding: 10px 24px;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(236,62,134,0.3);
+}
+
+.heroContent { padding-top: 16px; }
+
+.heroLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #9d72c0;
+  margin-bottom: 16px;
+}
+
+.heroTitle {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #1a1b20;
+  margin-bottom: 24px;
+}
+
+.heroAccent {
+  background: linear-gradient(to right, #5c347d, #ec3e86);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroDesc {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #4b444f;
+  margin-bottom: 32px;
+  max-width: 540px;
+}
+
+.chips { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.chip {
+  background: #eeedf4;
+  border: 1px solid rgba(255,255,255,0.5);
+  color: #6a5a7e;
+  padding: 10px 20px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ── Personal Color ── */
+.colorSection {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 80px 40px;
+  border-top: 1px solid rgba(206,195,208,0.3);
+}
+
+.colorSectionTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 16px;
+}
+
+.sectionLabelRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.sectionIconBox {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #e9d5ff;
+  color: #6a5a7e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sectionTitle {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1b20;
+}
+
+.colorKeywords { font-size: 15px; color: #7d7480; margin-top: 8px; }
+
+.seasonPill {
+  background: #f2daff;
+  color: #2e004e;
+  padding: 8px 24px;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.colorDesc {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #4b444f;
+  margin-bottom: 48px;
+  max-width: 760px;
+}
+
+.colorGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+}
+
+.colorCard {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow: 0 20px 40px rgba(168,85,247,0.07);
+  border-radius: 16px;
+  padding: 24px;
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+.colorCard:hover { transform: translateY(-8px); }
+
+.colorSwatch {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.3s;
+}
+.colorCard:hover .colorSwatch { transform: scale(1.02); }
+
+.colorName { font-weight: 700; color: #1a1b20; font-size: 15px; margin-bottom: 4px; }
+.colorHex { color: #7d7480; font-size: 13px; margin-bottom: 8px; font-family: monospace; }
+.colorUsage { color: #4b444f; font-size: 13px; }
+
+/* ── Style Lookbook ── */
+.lookbookSection {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px 80px;
+}
+
+.lookbookHeader { margin-bottom: 48px; }
+
+.lookbookIconTitle {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.lookbookIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #754c97 0%, #9d72c0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(117,76,151,0.3);
+  flex-shrink: 0;
+}
+
+.lookbookTitle {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #1a1b20;
+}
+
+.lookbookSubtitle { font-size: 16px; color: #7d7480; margin-top: 4px; }
+
+.lookbookList {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.lookbookCard {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow: 0 20px 40px rgba(168,85,247,0.1);
+  border-radius: 24px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  transition: transform 0.3s ease;
+}
+.lookbookCard:hover { transform: translateY(-4px); }
+.lookbookCardReversed { flex-direction: row-reverse; }
+
+.lookbookImgWrap {
+  width: 50%;
+  position: relative;
+  min-height: 400px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.lookbookImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s ease;
+}
+.lookbookCard:hover .lookbookImg { transform: scale(1.05); }
+
+.imgPlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f4f3fa;
+  min-height: 200px;
+}
+
+.lookbookBadge {
+  position: absolute;
+  top: 24px;
+  z-index: 10;
+  background: rgba(26,27,32,0.8);
+  backdrop-filter: blur(8px);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.lookbookInfo {
+  width: 50%;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.lookbookCategoryRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lookbookCategory {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #67587b;
+}
+
+.lookbookCardTitle {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #1a1b20;
+}
+
+.lookbookDesc {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #4b444f;
+  max-width: 420px;
+}
+
+.lookbookOccasion {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f2daff;
+  color: #5c347d;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 700;
+  width: fit-content;
+}
+
+.lookbookItemGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.lookbookItemRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(206,195,208,0.3);
+  background: rgba(250,248,255,0.5);
+  text-decoration: none;
+  color: #1a1b20;
+  transition: background 0.2s;
+}
+.lookbookItemRow:hover {
+  background: white;
+  border-color: #cec3d0;
+}
+.lookbookItemRow:hover .material-symbols-outlined { color: #754c97 !important; }
+
+.lookbookItemLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.lookbookDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e0b6ff, #ec3e86);
+  flex-shrink: 0;
+}
+
+.lookbookItemName {
+  font-size: 14px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* AI Progress card */
+.aiProgressCard {
+  margin-top: 64px;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow: 0 20px 40px rgba(168,85,247,0.1);
+  border-radius: 24px;
+  padding: 48px;
+  text-align: center;
+}
+
+.aiProgressTitle {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a1b20;
+  margin-bottom: 8px;
+}
+
+.aiProgressDesc { font-size: 16px; color: #4b444f; margin-bottom: 32px; }
+
+.aiProgressBar {
+  width: 100%;
+  max-width: 400px;
+  height: 4px;
+  background: #eeedf4;
+  border-radius: 9999px;
+  overflow: hidden;
+  margin: 0 auto 24px;
+}
+
+.aiProgressFill {
+  height: 100%;
+  background: linear-gradient(135deg, #754c97 0%, #9d72c0 100%);
+  border-radius: 9999px;
+  transition: width 1s ease-out;
+}
+
+.aiProgressTags {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.aiTag {
+  padding: 8px 24px;
+  border-radius: 9999px;
+  background: rgba(224,182,255,0.2);
+  color: #5c347d;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* ── Tips ── */
+.tipsSection {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px 80px;
+}
+
+.tipsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.tipsCard {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow: 0 20px 40px rgba(168,85,247,0.07);
+  border-radius: 20px;
+  padding: 32px;
+}
+
+.avoidCard {
+  border-color: rgba(186,26,26,0.1);
+  background: rgba(255,218,214,0.2);
+}
+
+.tipsCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.tipsIconBox {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tipsTitle {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1b20;
+}
+
+.tipsList { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+
+.tipsItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 15px;
+  color: #4b444f;
+  line-height: 1.5;
+}
+
+.tipsBullet {
+  min-width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #e9d5ff;
+  color: #5c347d;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.avoidBullet {
+  min-width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #ffdad6;
+  color: #ba1a1a;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── CTA ── */
+.ctaSection {
+  display: flex;
+  justify-content: center;
+  padding: 0 40px 80px;
+}
+
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #1a1b20;
+  color: white;
+  border: none;
+  border-radius: 9999px;
+  padding: 18px 40px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+.ctaBtn:hover { background: #4b444f; }
+.ctaBtn:active { transform: scale(0.97); }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .heroGrid { grid-template-columns: 1fr; }
+  .colorGrid { grid-template-columns: repeat(3, 1fr); }
+  .tipsGrid { grid-template-columns: 1fr; }
+  .pageHeader, .colorSection, .lookbookSection, .tipsSection, .ctaSection {
+    padding-left: 20px; padding-right: 20px;
+  }
+  .lookbookCard, .lookbookCardReversed { flex-direction: column; }
+  .lookbookImgWrap { width: 100%; min-height: 260px; }
+  .lookbookInfo { width: 100%; padding: 32px 24px; }
+  .lookbookItemGrid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .colorGrid { grid-template-columns: repeat(2, 1fr); }
+  .heroTitle { font-size: 28px; }
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }

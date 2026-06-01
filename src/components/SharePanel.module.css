@@ -1,0 +1,153 @@
+.panel {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.cardHidden {
+  position: fixed;
+  top: -9999px;
+  left: -9999px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Header */
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.sectionIcon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #754c97 0%, #5c347d 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(117,76,151,0.3);
+  flex-shrink: 0;
+}
+
+.sectionTitle {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #1a1b20;
+}
+
+.sectionSubtitle {
+  font-size: 18px;
+  color: #7d7480;
+  margin-top: 4px;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: 8fr 4fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Preview */
+.previewLabel {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #7d7480;
+  margin-bottom: 16px;
+}
+
+.previewCard {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 40px 60px rgba(168,85,247,0.1);
+  transition: transform 0.5s ease;
+}
+.previewCard:hover { transform: scale(1.005); }
+
+/* Actions */
+.actionsCol {
+  position: sticky;
+  top: 104px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* KakaoTalk button */
+.kakaoBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 20px;
+  border-radius: 9999px;
+  border: none;
+  background: #FEE500;
+  color: #3A1D1D;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(254,229,0,0.4);
+  transition: filter 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.kakaoBtn:hover:not(:disabled) {
+  filter: brightness(1.05);
+  box-shadow: 0 12px 32px rgba(254,229,0,0.5);
+}
+.kakaoBtn:active:not(:disabled) { transform: scale(0.98); }
+.kakaoBtn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* Status messages */
+.statusMsg {
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.5;
+}
+.statusSuccess { background: #f2daff; color: #5c347d; }
+.statusInfo { background: #eeedf4; color: #4b444f; }
+.statusError { background: #ffdad6; color: #ba1a1a; }
+
+/* Tip */
+.tipCard {
+  background: #f4f3fa;
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.tipTitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a1b20;
+  margin-bottom: 6px;
+}
+
+.tipText {
+  font-size: 13px;
+  color: #6a5a7e;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .panel { padding-left: 20px; padding-right: 20px; }
+  .grid { grid-template-columns: 1fr; }
+  .actionsCol { position: static; }
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }

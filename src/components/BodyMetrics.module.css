@@ -1,0 +1,128 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.section { display: flex; flex-direction: column; gap: 12px; }
+
+.sectionLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1b20;
+}
+
+.labelIcon { font-size: 18px; color: #754c97; }
+
+/* Gender */
+.genderGroup { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+.genderBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 12px;
+  border: 1px solid rgba(206,195,208,0.3);
+  border-radius: 9999px;
+  background: rgba(255,255,255,0.4);
+  backdrop-filter: blur(10px);
+  color: #4b444f;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.genderBtn:hover {
+  border-color: #754c97;
+  color: #754c97;
+  background: rgba(242,218,255,0.3);
+}
+
+.genderBtnActive {
+  background: #f2daff !important;
+  border-color: #754c97 !important;
+  color: #2e004e !important;
+}
+
+.genderIcon { font-size: 20px; font-weight: 700; }
+
+/* Metrics Row */
+.metricsRow { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.inputGroup { display: flex; flex-direction: column; gap: 10px; }
+.inputWrapper { position: relative; display: flex; align-items: center; }
+
+.input {
+  width: 100%;
+  background: rgba(255,255,255,0.4);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(206,195,208,0.3);
+  border-radius: 12px;
+  color: #1a1b20;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  padding: 16px 52px 16px 20px;
+  outline: none;
+  transition: all 0.25s ease;
+  -moz-appearance: textfield;
+}
+
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+.input::placeholder { color: #cec3d0; font-weight: 400; }
+
+.input:hover { border-color: rgba(117,76,151,0.3); }
+
+.input:focus {
+  border-color: #754c97;
+  box-shadow: 0 0 0 3px rgba(117,76,151,0.15);
+  background: rgba(255,255,255,0.6);
+}
+
+.unit {
+  position: absolute;
+  right: 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #7d7480;
+  pointer-events: none;
+}
+
+/* BMI */
+.bmiCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: rgba(242,218,255,0.2);
+  border: 1px solid rgba(117,76,151,0.15);
+  border-radius: 12px;
+  animation: fadeSlideIn 0.3s ease;
+}
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.bmiLeft { display: flex; align-items: baseline; gap: 10px; }
+.bmiTitle { font-size: 13px; color: #7d7480; font-weight: 500; }
+.bmiValue { font-family: 'Hanken Grotesk', sans-serif; font-size: 24px; font-weight: 700; color: #1a1b20; }
+.bmiRight { display: flex; align-items: center; }
+.bmiLabel {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 9999px;
+  border: 1px solid;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}

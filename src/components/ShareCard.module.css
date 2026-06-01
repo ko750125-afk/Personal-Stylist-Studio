@@ -1,0 +1,213 @@
+/* 공유 카드 - 캡처용 */
+.card {
+  position: relative;
+  width: 100%;
+  background: #0a0a0c;
+  border-radius: 0;
+  overflow: hidden;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  gap: 0;
+  flex-shrink: 0;
+}
+
+/* Background blobs */
+.bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bgBlob1 {
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 240px;
+  height: 240px;
+  background: rgba(224,182,255,0.15);
+  filter: blur(80px);
+  border-radius: 50%;
+}
+
+.bgBlob2 {
+  position: absolute;
+  bottom: -80px;
+  left: -80px;
+  width: 240px;
+  height: 240px;
+  background: rgba(255,177,199,0.1);
+  filter: blur(80px);
+  border-radius: 50%;
+}
+
+/* All children above bg */
+.card > * { position: relative; z-index: 1; }
+
+/* Main body */
+.body {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+/* Photo */
+.photoWrap {
+  width: 38%;
+  flex-shrink: 0;
+}
+
+.photo {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.1);
+  display: block;
+}
+
+/* Info */
+.info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8px 0;
+  min-height: 300px;
+}
+
+/* Header row */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.logo {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #e0b6ff;
+}
+
+.badge {
+  margin-left: auto;
+  background: rgba(255,255,255,0.1);
+  border-radius: 9999px;
+  padding: 4px 12px;
+  font-size: 10px;
+  color: rgba(255,255,255,0.6);
+  font-weight: 700;
+}
+
+/* Sections */
+.section { margin-bottom: 20px; }
+
+.sectionLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 6px;
+  display: block;
+}
+
+.bodyTypeName {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: white;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.bodyTypeEn {
+  font-size: 13px;
+  color: rgba(224,182,255,0.7);
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.tags { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.tag {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 9999px;
+  padding: 3px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.8);
+}
+
+.seasonName {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 12px;
+}
+
+.palette { display: flex; gap: 10px; }
+
+.swatch {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Footer */
+.footer {
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footerLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 10px;
+  display: block;
+}
+
+.styleList { display: flex; flex-direction: column; gap: 8px; }
+
+.styleChip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.9);
+  font-weight: 500;
+}
+
+/* Bottom bar */
+.bottomBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.bottomBar span {
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+}
+
+.url {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(224,182,255,0.6) !important;
+}
