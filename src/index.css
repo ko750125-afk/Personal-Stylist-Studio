@@ -22,6 +22,20 @@
   --aura-tertiary-fixed-dim: #ffb1c7;
   --aura-on-tertiary-fixed-variant: #8e0048;
   --aura-glow-gradient: linear-gradient(135deg, #754c97 0%, #ec3e86 100%);
+  --aura-primary-gradient: linear-gradient(135deg, #754c97 0%, #9d72c0 100%);
+
+  /* AURA 추가 변수 */
+  --aura-glass-bg: rgba(255, 255, 255, 0.7);
+  --aura-glass-border: rgba(255, 255, 255, 0.3);
+  --aura-shadow-purple: rgba(168, 85, 247, 0.08);
+  --aura-shadow-purple-medium: rgba(168, 85, 247, 0.1);
+  --aura-shadow-purple-strong: rgba(168, 85, 247, 0.15);
+  --aura-shadow-btn: rgba(117, 76, 151, 0.25);
+  --aura-shadow-btn-hover: rgba(168, 85, 247, 0.4);
+  --aura-error: #93000a;
+  --aura-error-container: #ffdad6;
+  --aura-error-border: rgba(186, 26, 26, 0.2);
+  --aura-input-bg: rgba(244, 243, 250, 0.5);
 
   /* Legacy dark theme (analysis result screens) */
   --color-bg: #0a0a0f;
@@ -61,7 +75,7 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-body);
-  color: var(--color-text-primary);
+  color: var(--aura-on-surface);
   min-height: 100vh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;

@@ -8,6 +8,7 @@ interface AnalysisResultProps {
   photoPreview: string;
   outfitImages?: (string | null)[];
   onReset: () => void;
+  saveStatus?: 'idle' | 'saving' | 'saved' | 'error';
 }
 
 const COLOR_LABELS: Record<number, { name: string; usage: string }> = {
@@ -44,7 +45,7 @@ const StyleImage: React.FC<{ src: string; alt: string; className: string }> = ({
 };
 
 const AnalysisResult: React.FC<AnalysisResultProps> = ({
-  result, photoPreview, outfitImages = [], onReset,
+  result, photoPreview, outfitImages = [], onReset, saveStatus = 'idle',
 }) => {
   const { bodyType, personalColor, styleRecommendations } = result;
   const containerRef = useRef<HTMLDivElement>(null);
@@ -80,6 +81,14 @@ const AnalysisResult: React.FC<AnalysisResultProps> = ({
                 <span className="material-symbols-outlined" style={{fontSize:'18px', fontVariationSettings:"'FILL' 1"}}>auto_awesome</span>
                 AI 분석 완료
               </div>
+              {saveStatus !== 'idle' && (
+                <div className={styles.saveBadge} data-status={saveStatus}>
+                  <span className="material-symbols-outlined" style={{fontSize:'16px', fontVariationSettings:"'FILL' 1"}}>
+                    {saveStatus === 'saving' ? 'sync' : saveStatus === 'saved' ? 'cloud_done' : 'cloud_off'}
+                  </span>
+                  {saveStatus === 'saving' ? '저장 중...' : saveStatus === 'saved' ? '저장 완료' : '저장 실패'}
+                </div>
+              )}
             </div>
           </div>
 

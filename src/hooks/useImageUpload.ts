@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { uploadStyleImage, UploadResult } from '../services/storageService';
+import { uploadStyleImage, type UploadResult } from '../services/storageService';
 import { useAuth } from '../contexts/AuthContext';
 
 interface UseImageUploadReturn {
