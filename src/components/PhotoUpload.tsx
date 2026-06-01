@@ -65,6 +65,7 @@ const PhotoUpload: React.FC<PhotoUploadProps> = ({
         ref={inputRef}
         type="file"
         accept="image/*"
+        capture="environment"
         onChange={handleFileChange}
         className={styles.hiddenInput}
         id="photo-upload"
