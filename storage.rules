@@ -1,18 +1,40 @@
-rules_version = '2';
-service firebase.storage {
-  match /b/{bucket}/o {
+// ════════════════════════════════════════════════════════════════
+// AURA Personal Stylist — Storage 보안 규칙 (추가 블록)
+//
+// 사용법:
+//   기존 storage.rules 파일의
+//   match /b/{bucket}/o { ... } 블록 안에
+//   아래 match 블록만 붙여넣으세요.
+//   기존 다른 앱의 Storage 규칙은 건드리지 않아도 됩니다.
+// ════════════════════════════════════════════════════════════════
 
-    // 유저 스타일 이미지: 본인만 읽기/쓰기/삭제
-    // 경로: users/{uid}/styles/{filename}
+// ── 기존 rules 파일에 이 블록만 추가하세요 ────────────────────
+
+    // [AURA Stylist] 유저 스타일 이미지
+    // 경로: users/{uid}/styles/{파일명}
     match /users/{userId}/styles/{allPaths=**} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
+      allow read, write: if request.auth != null
+                         && request.auth.uid == userId;
 
-      // ──────────────────────────────────────────────────────────────
-      // 30일 자동 삭제 설정 방법 (Firebase Console):
+      // ── 30일 자동 삭제 설정 (Firebase Console) ──────────────
       // Storage > 버킷 선택 > "Object Lifecycle Management" 탭
-      // → "규칙 추가" → 조건: Age >= 30 days → 작업: Delete
-      // 이 규칙으로 Storage 비용이 완전히 관리됩니다.
-      // ──────────────────────────────────────────────────────────────
+      // → "규칙 추가"
+      //   조건: Age >= 30 days
+      //   작업: Delete object
+      // 이 규칙 하나로 Storage 비용이 완전히 자동 관리됩니다.
+      // ────────────────────────────────────────────────────────
     }
-  }
-}
+
+// ── 참고: 기존 rules 파일 구조 ────────────────────────────────
+//
+// rules_version = '2';
+// service firebase.storage {
+//   match /b/{bucket}/o {
+//
+//     // 기존 앱 규칙 (건드리지 마세요)
+//     match /기존경로/{allPaths=**} { ... }
+//
+//     // ↓ 여기에 위의 users/{userId}/styles 블록을 붙여넣으세요 ↓
+//
+//   }
+// }

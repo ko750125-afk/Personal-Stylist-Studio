@@ -41,7 +41,7 @@ export const uploadStyleImage = async (uid: string, file: File): Promise<UploadR
 
   // Firestore에 메타데이터 기록 (30일 후 만료 추적용)
   const expiresAt = Timestamp.fromDate(new Date(timestamp + 30 * 24 * 60 * 60 * 1000));
-  const docRef = await addDoc(collection(db, 'user_images'), {
+  const docRef = await addDoc(collection(db, 'stylist_images'), {
     uid,
     storagePath,
     downloadUrl,
@@ -55,5 +55,5 @@ export const uploadStyleImage = async (uid: string, file: File): Promise<UploadR
 /** Storage + Firestore 동시 삭제 */
 export const deleteStyleImage = async (storagePath: string, docId: string): Promise<void> => {
   await deleteObject(ref(storage, storagePath));
-  await deleteDoc(doc(db, 'user_images', docId));
+  await deleteDoc(doc(db, 'stylist_images', docId));
 };

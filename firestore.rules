@@ -1,18 +1,48 @@
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
+// ════════════════════════════════════════════════════════════════
+// AURA Personal Stylist — Firestore 보안 규칙 (추가 블록)
+//
+// 사용법:
+//   기존 firestore.rules 파일의
+//   match /databases/{database}/documents { ... } 블록 안에
+//   아래 match 블록들을 그대로 붙여넣으세요.
+//   기존 다른 앱의 컬렉션 규칙은 건드리지 않아도 됩니다.
+//
+// 컬렉션 명명 규칙:
+//   stylist_users  — 스타일리스트 앱 유저 프로필
+//   stylist_images — 스타일리스트 앱 업로드 이미지 메타데이터
+// ════════════════════════════════════════════════════════════════
 
-    // 유저 프로필: 본인만 읽기/쓰기
-    match /users/{uid} {
-      allow read, write: if request.auth != null && request.auth.uid == uid;
+// ── 기존 rules 파일에 이 블록들만 추가하세요 ──────────────────
+
+    // [AURA Stylist] 유저 프로필: 본인만 읽기/쓰기
+    match /stylist_users/{uid} {
+      allow read, write: if request.auth != null
+                         && request.auth.uid == uid;
     }
 
-    // 업로드 이미지 메타데이터: 본인만 접근
-    match /user_images/{docId} {
+    // [AURA Stylist] 이미지 메타데이터: 본인만 접근
+    match /stylist_images/{docId} {
+      // 읽기/삭제: 문서의 uid 필드가 본인 uid와 일치할 때
       allow read, delete: if request.auth != null
                           && request.auth.uid == resource.data.uid;
+      // 생성: 요청 데이터의 uid 필드가 본인 uid와 일치할 때
       allow create:       if request.auth != null
                           && request.auth.uid == request.resource.data.uid;
+      // 수정 불가 (이미지 메타데이터는 불변)
+      allow update: if false;
     }
-  }
-}
+
+// ── 참고: 기존 rules 파일 구조 ────────────────────────────────
+//
+// rules_version = '2';
+// service cloud.firestore {
+//   match /databases/{database}/documents {
+//
+//     // 기존 앱 규칙 (건드리지 마세요)
+//     match /18_apps_list/{document} { ... }
+//     match /기타컬렉션/{document}   { ... }
+//
+//     // ↓ 여기에 위의 stylist_* 블록을 붙여넣으세요 ↓
+//
+//   }
+// }

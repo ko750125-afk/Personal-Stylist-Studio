@@ -30,7 +30,7 @@ export const signUp = async (
   try {
     const { user } = await createUserWithEmailAndPassword(auth, email, password);
     await updateProfile(user, { displayName });
-    await setDoc(doc(db, 'users', user.uid), {
+    await setDoc(doc(db, 'stylist_users', user.uid), {
       uid:         user.uid,
       email,
       displayName,
