@@ -4,8 +4,11 @@ import BodyMetrics from './components/BodyMetrics';
 import AnalyzeButton from './components/AnalyzeButton';
 import AnalyzingLoader from './components/AnalyzingLoader';
 import AnalysisResult from './components/AnalysisResult';
+import AuthModal from './components/AuthModal';
 import { analyzeStyle, generateAllOutfitImages } from './services/openaiService';
 import type { BodyAnalysisResult } from './services/openaiService';
+import { useAuth } from './contexts/AuthContext';
+import { signOut } from './services/authService';
 import styles from './App.module.css';
 
 type AppScreen = 'home' | 'input' | 'analyzing' | 'generating' | 'result';
@@ -19,8 +22,10 @@ interface FormState {
 }
 
 function App() {
+  const { user } = useAuth();
   const [screen, setScreen] = useState<AppScreen>('home');
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showAuth, setShowAuth] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -105,6 +110,7 @@ function App() {
   if (screen === 'home') {
     return (
       <div className={styles.auraApp}>
+        {showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
         <header ref={headerRef} className={`${styles.auraHeader} ${isScrolled ? styles.auraHeaderScrolled : ''}`}>
           <nav className={styles.auraNav}>
             <span className={styles.auraLogo}>AURA</span>
@@ -113,9 +119,19 @@ function App() {
               <a href="#" className={styles.auraNavLink}>Trend</a>
               <a href="#" className={`${styles.auraNavLink} ${styles.auraNavLinkActive}`}>My Style</a>
             </div>
-            <button className={styles.auraSignInBtn} onClick={() => setScreen('input')}>
-              Start Analysis
-            </button>
+            {user ? (
+              <div className={styles.auraUserNav}>
+                <span className={styles.auraUserAvatar}>
+                  {user.displayName?.[0]?.toUpperCase() ?? user.email?.[0]?.toUpperCase() ?? 'U'}
+                </span>
+                <span className={styles.auraUserName}>{user.displayName ?? user.email}</span>
+                <button className={styles.auraLogoutBtn} onClick={() => signOut()}>로그아웃</button>
+              </div>
+            ) : (
+              <button className={styles.auraSignInBtn} onClick={() => setShowAuth(true)}>
+                Sign In
+              </button>
+            )}
           </nav>
         </header>
 
@@ -308,6 +324,7 @@ function App() {
       {(screen === 'analyzing' || screen === 'generating') && <AnalyzingLoader stage={screen} />}
 
       <header className={`${styles.auraHeader} ${isScrolled ? styles.auraHeaderScrolled : ''}`}>
+        {showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
         <nav className={styles.auraNav}>
           <span className={styles.auraLogo} style={{cursor:'pointer'}} onClick={() => setScreen('home')}>AURA</span>
           <div className={styles.auraNavLinks}>
@@ -315,7 +332,17 @@ function App() {
             <a href="#" className={styles.auraNavLink}>Trend</a>
             <a href="#" className={`${styles.auraNavLink} ${styles.auraNavLinkActive}`}>My Style</a>
           </div>
-          <button className={styles.auraSignInBtn}>Sign In</button>
+          {user ? (
+            <div className={styles.auraUserNav}>
+              <span className={styles.auraUserAvatar}>
+                {user.displayName?.[0]?.toUpperCase() ?? user.email?.[0]?.toUpperCase() ?? 'U'}
+              </span>
+              <span className={styles.auraUserName}>{user.displayName ?? user.email}</span>
+              <button className={styles.auraLogoutBtn} onClick={() => signOut()}>로그아웃</button>
+            </div>
+          ) : (
+            <button className={styles.auraSignInBtn} onClick={() => setShowAuth(true)}>Sign In</button>
+          )}
         </nav>
       </header>
 

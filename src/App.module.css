@@ -783,6 +783,52 @@
   border-bottom: 2px solid #5c347d;
   padding-bottom: 2px;
 }
+/* 로그인된 유저 네비게이션 */
+.auraUserNav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.auraUserAvatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #754c97 0%, #ec3e86 100%);
+  color: white;
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.auraUserName {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1b20;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.auraLogoutBtn {
+  background: rgba(206,195,208,0.3);
+  border: 1px solid #cec3d0;
+  border-radius: 9999px;
+  color: #4b444f;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.auraLogoutBtn:hover { background: rgba(206,195,208,0.5); }
+
 .auraSignInBtn {
   background: linear-gradient(135deg, #754c97 0%, #ec3e86 100%);
   color: white;

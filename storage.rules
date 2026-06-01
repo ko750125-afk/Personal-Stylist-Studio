@@ -1,0 +1,18 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // 유저 스타일 이미지: 본인만 읽기/쓰기/삭제
+    // 경로: users/{uid}/styles/{filename}
+    match /users/{userId}/styles/{allPaths=**} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+
+      // ──────────────────────────────────────────────────────────────
+      // 30일 자동 삭제 설정 방법 (Firebase Console):
+      // Storage > 버킷 선택 > "Object Lifecycle Management" 탭
+      // → "규칙 추가" → 조건: Age >= 30 days → 작업: Delete
+      // 이 규칙으로 Storage 비용이 완전히 관리됩니다.
+      // ──────────────────────────────────────────────────────────────
+    }
+  }
+}
