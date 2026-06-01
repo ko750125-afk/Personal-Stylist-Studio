@@ -77,10 +77,14 @@ export default function InputScreen({
                   <h3 className={styles.auraCardTitle}>전신 사진 업로드</h3>
                 </div>
                 <PhotoUpload
-                  photoPreview={form.photoPreview}
-                  onPhotoSelect={(file, preview) => {
+                  photo={form.photo}
+                  preview={form.photoPreview}
+                  onPhotoChange={(file, preview) => {
                     setForm(prev => ({ ...prev, photo: file, photoPreview: preview }));
                     setError(null);
+                  }}
+                  onPhotoRemove={() => {
+                    setForm(prev => ({ ...prev, photo: null, photoPreview: null }));
                   }}
                 />
               </div>
