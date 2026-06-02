@@ -218,18 +218,7 @@ const AnalysisResult: React.FC<AnalysisResultProps> = ({
           })}
         </div>
 
-        {/* AI Progress card */}
-        <div className={styles.aiProgressCard}>
-          <h3 className={styles.aiProgressTitle}>스타일 분석 결과 업데이트</h3>
-          <p className={styles.aiProgressDesc}>당신의 최근 취향을 반영하여 새로운 코디를 생성 중입니다.</p>
-          <div className={styles.aiProgressBar}>
-            <div className={styles.aiProgressFill} style={{width:'85%'}} />
-          </div>
-          <div className={styles.aiProgressTags}>
-            <span className={styles.aiTag}>체형: {result.bodyType.englishName}</span>
-            <span className={styles.aiTag}>톤: {personalColor.season}</span>
-          </div>
-        </div>
+
       </section>
 
       {/* Tips + Share */}

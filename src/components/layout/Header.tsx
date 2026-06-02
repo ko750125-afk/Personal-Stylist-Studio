@@ -43,11 +43,6 @@ export default function Header({ onLogoClick, disableScrollEffect = false }: Hea
           >
             AURA
           </span>
-          <div className={styles.auraNavLinks}>
-            <a href="#" className={styles.auraNavLink}>Style Guide</a>
-            <a href="#" className={styles.auraNavLink}>Trend</a>
-            <a href="#" className={`${styles.auraNavLink} ${styles.auraNavLinkActive}`}>My Style</a>
-          </div>
           {user ? (
             <div className={styles.auraUserNav}>
               <span className={styles.auraUserAvatar}>
