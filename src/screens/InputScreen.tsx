@@ -56,8 +56,8 @@ export default function InputScreen({
 
       <Header onLogoClick={onGoHome} />
 
-      <main className={styles.auraMain}>
-        <section className={styles.auraInputSection}>
+      <main className={styles.auraMain} style={{ minHeight: 'calc(100vh - 160px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <section className={styles.auraInputSection} style={{ width: '100%' }}>
 
 
           <div className={styles.auraInputGrid}>

@@ -68,7 +68,7 @@ const BodyMetrics: React.FC<BodyMetricsProps> = ({
               aria-pressed={gender === opt.value}
             >
 
-              <span>{opt.label}</span>
+              <span style={{ fontWeight: '800', fontSize: '1.2rem', letterSpacing: '0.5px' }}>{opt.label}</span>
             </button>
           ))}
         </div>
