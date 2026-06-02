@@ -1,5 +1,5 @@
 import {
-  collection, addDoc, query, where, orderBy, getDocs,
+  collection, addDoc, query, where, getDocs,
   serverTimestamp, doc, deleteDoc, Timestamp
 } from 'firebase/firestore';
 import { db } from '../firebase';
@@ -84,12 +84,11 @@ export async function saveAnalysisResult(
 export async function loadAnalysisHistory(uid: string): Promise<SavedResult[]> {
   const q = query(
     collection(db, 'stylist_results'),
-    where('uid', '==', uid),
-    orderBy('createdAt', 'desc')
+    where('uid', '==', uid)
   );
   const snapshot = await getDocs(q);
 
-  return snapshot.docs.map((d) => {
+  const results = snapshot.docs.map((d) => {
     const data = d.data();
     return {
       docId: d.id,
@@ -103,6 +102,9 @@ export async function loadAnalysisHistory(uid: string): Promise<SavedResult[]> {
       expiresAt: data.expiresAt?.toDate?.() ?? new Date(),
     };
   });
+
+  // 복합 색인(Composite Index) 생성 없이 즉시 동작하도록 클라이언트 사이드에서 최신순 정렬 수행
+  return results.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
 }
 
 // ─── Delete ─────────────────────────────────────────────────────

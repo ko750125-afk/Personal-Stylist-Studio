@@ -3,7 +3,12 @@
   background: radial-gradient(circle at 10% 20%, rgba(242,218,255,0.4) 0%, rgba(250,248,255,1) 90%);
   font-family: 'Plus Jakarta Sans', sans-serif;
   color: #1a1b20;
-  padding: 80px 40px;
+  padding: 120px 40px 40px;
+}
+
+.studioHeader {
+  max-width: 1280px;
+  margin: 0 auto 48px;
 }
 
 .header {

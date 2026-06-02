@@ -40,6 +40,13 @@ export default function InputScreen({
     window.scrollTo(0, 0);
   }, []);
 
+  // File 객체(photo) 없이 이미지 주소(photoPreview)만 잔존해 있는 오류 상황 자동 정정
+  useEffect(() => {
+    if (!form.photo && form.photoPreview) {
+      setForm(prev => ({ ...prev, photoPreview: null }));
+    }
+  }, [form.photo, form.photoPreview, setForm]);
+
   const handleAnalyzeClick = () => {
     if (!form.photo || !form.height || !form.weight || !form.gender) {
       alert("Please provide all required information (Photo, Gender, Height, Weight).");

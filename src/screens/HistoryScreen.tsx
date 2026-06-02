@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { loadAnalysisHistory, deleteAnalysisResult } from '../services/resultService';
 import type { SavedResult } from '../services/resultService';
+import Header from '../components/layout/Header';
 import styles from './HistoryScreen.module.css';
 
 interface HistoryScreenProps {
@@ -13,8 +14,10 @@ export default function HistoryScreen({ uid, onSelect, onBack }: HistoryScreenPr
   const [history, setHistory] = useState<SavedResult[]>([]);
   const [loading, setLoading] = useState(true);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    setError(null);
     loadAnalysisHistory(uid)
       .then((data) => {
         setHistory(data);
@@ -22,6 +25,7 @@ export default function HistoryScreen({ uid, onSelect, onBack }: HistoryScreenPr
       })
       .catch((err) => {
         console.error('[History] 히스토리 로드 실패:', err);
+        setError('데이터를 불러오지 못했습니다. Firebase Console에서 Firestore 보안 규칙이 정상적으로 적용되었는지 확인해 주세요.');
         setLoading(false);
       });
   }, [uid]);
@@ -51,20 +55,24 @@ export default function HistoryScreen({ uid, onSelect, onBack }: HistoryScreenPr
 
   return (
     <div className={styles.wrapper}>
-      <header className={styles.header}>
-        <button className={styles.backBtn} onClick={onBack}>
-          <span className="material-symbols-outlined">arrow_back</span>
-          <span>Back to Home</span>
-        </button>
-        <h1 className={styles.title}>My Styling Studio</h1>
-        <p className={styles.subtitle}>Your 2-week style archive</p>
-      </header>
+      <Header onLogoClick={onBack} disableScrollEffect />
 
       <main className={styles.main}>
+        <div className={styles.studioHeader}>
+          <h1 className={styles.title}>My Styling Studio</h1>
+          <p className={styles.subtitle}>Your 2-week style archive</p>
+        </div>
+
         {loading ? (
           <div className={styles.loadingState}>
             <span className="material-symbols-outlined spin">progress_activity</span>
             <p>Loading your style history...</p>
+          </div>
+        ) : error ? (
+          <div className={styles.emptyState}>
+            <span className="material-symbols-outlined icon" style={{ color: '#ff4d4f' }}>error</span>
+            <p className={styles.emptyText} style={{ color: '#ff4d4f', maxWidth: '400px', margin: '0 auto 1.5rem' }}>{error}</p>
+            <button className={styles.startBtn} onClick={onBack}>Back to Home</button>
           </div>
         ) : history.length === 0 ? (
           <div className={styles.emptyState}>

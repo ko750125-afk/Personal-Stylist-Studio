@@ -52,6 +52,19 @@ export const uploadStyleImage = async (uid: string, file: File): Promise<UploadR
   return { downloadUrl, storagePath, docId: docRef.id };
 };
 
+/** Base64 Data URL을 Blob으로 안전하게 변환 */
+export const dataURLtoBlob = (dataUrl: string): Blob => {
+  const arr = dataUrl.split(',');
+  const mime = arr[0].match(/:(.*?);/)?.[1] || 'image/jpeg';
+  const bstr = atob(arr[1]);
+  let n = bstr.length;
+  const u8arr = new Uint8Array(n);
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n);
+  }
+  return new Blob([u8arr], { type: mime });
+};
+
 /**
  * Base64 데이터를 Firebase Storage에 업로드 (2주 만료 메타데이터 기록)
  */
@@ -60,8 +73,7 @@ export const uploadBase64Image = async (
   base64Data: string,
   pathPrefix: string
 ): Promise<string> => {
-  const response = await fetch(base64Data);
-  const blob = await response.blob();
+  const blob = dataURLtoBlob(base64Data);
   const timestamp = Date.now();
   const randomId = Math.floor(Math.random() * 100000);
   const storagePath = `users/${uid}/${pathPrefix}/${timestamp}_${randomId}.jpg`;

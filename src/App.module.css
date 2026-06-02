@@ -243,6 +243,12 @@
   gap: 10px;
 }
 
+.auraUserInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .auraUserAvatar {
   width: 36px;
   height: 36px;
@@ -314,6 +320,39 @@
 }
 .auraSignInBtn:hover { opacity: 0.9; }
 .auraSignInBtn:active { transform: scale(0.97); }
+
+/* 모바일 유저 정보 반응형 대응 */
+@media (max-width: 600px) {
+  .auraUserNav {
+    gap: 6px;
+  }
+  .auraUserInfo {
+    display: flex;
+    flex-direction: column-reverse; /* 버튼이 위로, 메일주소가 아래로 배치 */
+    align-items: flex-end;          /* 헤더 우측 선에 맞춰 깔끔하게 우측 정렬 */
+    gap: 4px;
+  }
+  .auraUserName {
+    max-width: 90px;
+    font-size: 11px;
+    line-height: 1.1;
+  }
+  .auraLogoutBtn {
+    padding: 3px 8px;
+    font-size: 10px;
+    line-height: 1;
+  }
+  .auraHistoryBtn {
+    padding: 4px 10px;
+    font-size: 11px;
+    margin-right: 2px;
+  }
+  .auraUserAvatar {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+}
 
 /* Main */
 .auraMain {

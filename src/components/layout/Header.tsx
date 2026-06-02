@@ -52,8 +52,12 @@ export default function Header({ onLogoClick, onHistoryClick, disableScrollEffec
               <span className={styles.auraUserAvatar}>
                 {user.displayName?.[0]?.toUpperCase() ?? user.email?.[0]?.toUpperCase() ?? 'U'}
               </span>
-              <span className={styles.auraUserName}>{user.displayName ?? user.email}</span>
-              <button className={styles.auraLogoutBtn} onClick={() => signOut()}>Sign Out</button>
+              <div className={styles.auraUserInfo}>
+                <span className={styles.auraUserName} title={user.displayName ?? user.email ?? ''}>
+                  {user.displayName ?? user.email}
+                </span>
+                <button className={styles.auraLogoutBtn} onClick={() => signOut()}>Sign Out</button>
+              </div>
             </div>
           ) : (
             <button className={styles.auraSignInBtn} onClick={() => setShowAuth(true)}>

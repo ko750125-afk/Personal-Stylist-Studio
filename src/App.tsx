@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import HomeScreen from './screens/HomeScreen';
 import InputScreen from './screens/InputScreen';
 import HistoryScreen from './screens/HistoryScreen';
@@ -47,6 +47,21 @@ export default function App() {
   const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
   const saveAttempted = useRef(false);
 
+  // 로그인 상태 및 결과 생성 감지 시 자동 저장 수행 (비로그인 상태에서 분석 후 로그인 시에도 자동 저장 처리)
+  useEffect(() => {
+    if (user && result && form.photo && !saveAttempted.current && saveStatus === 'idle') {
+      saveAttempted.current = true;
+      setSaveStatus('saving');
+      saveAnalysisResult(user.uid, result, form.photo, outfitImages)
+        .then(() => setSaveStatus('saved'))
+        .catch((e) => {
+          console.warn('[App] 결과 저장 실패:', e);
+          setSaveStatus('error');
+          saveAttempted.current = false; // 에러 시 재시도 허용
+        });
+    }
+  }, [user, result, form.photo, outfitImages, saveStatus]);
+
   // ─── Handlers ─────────────────────────────────────────────────
   const handleAnalyze = async () => {
     if (!form.photo || !form.photoPreview || !form.height || !form.weight || !form.gender) return;
@@ -75,18 +90,6 @@ export default function App() {
       );
       setOutfitImages(images);
       setScreen('result');
-
-      // Step 3: Auto-save if logged in (non-blocking)
-      if (user && form.photo && !saveAttempted.current) {
-        saveAttempted.current = true;
-        setSaveStatus('saving');
-        saveAnalysisResult(user.uid, analysisResult, form.photo, images)
-          .then(() => setSaveStatus('saved'))
-          .catch((e) => {
-            console.warn('[App] 결과 저장 실패:', e);
-            setSaveStatus('error');
-          });
-      }
     } catch (err) {
       const message = err instanceof Error ? err.message : '알 수 없는 오류가 발생했습니다.';
       setError(message);
@@ -118,7 +121,10 @@ export default function App() {
   if (screen === 'home') {
     return (
       <HomeScreen
-        onStartAnalysis={() => setScreen('input')}
+        onStartAnalysis={() => {
+          setForm(EMPTY_FORM);
+          setScreen('input');
+        }}
         onHistoryClick={() => setScreen('history')}
       />
     );
