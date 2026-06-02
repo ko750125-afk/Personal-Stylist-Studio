@@ -39,8 +39,8 @@ export async function saveAnalysisResult(
     outfitUrls.map(async (img) => {
       if (!img) return null;
       if (img.startsWith('data:')) {
-        // Base64 형식은 Storage 업로드
-        return await uploadBase64Image(uid, img, 'outfits');
+        // Base64 형식은 기존 styles 허용 규칙 범위 내인 styles/outfits 경로로 업로드
+        return await uploadBase64Image(uid, img, 'styles/outfits');
       }
       // 일반 URL (Pollinations.ai)은 그대로 보존
       return img;
