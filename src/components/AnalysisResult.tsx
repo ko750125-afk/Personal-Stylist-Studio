@@ -62,7 +62,7 @@ const AnalysisResult: React.FC<AnalysisResultProps> = ({
       <header className={styles.pageHeader}>
         <button className={styles.backBtn} onClick={onReset}>
           <span className="material-symbols-outlined">arrow_back</span>
-          <span>다시 분석하기</span>
+          <span>Analyze Again</span>
         </button>
 
         <div className={styles.heroGrid}>
@@ -72,7 +72,7 @@ const AnalysisResult: React.FC<AnalysisResultProps> = ({
               <img src={photoPreview} alt="분석된 사진" className={styles.photoImg} />
               <div className={styles.photoBadge}>
                 <span className="material-symbols-outlined" style={{fontSize:'18px', fontVariationSettings:"'FILL' 1"}}>auto_awesome</span>
-                AI 분석 완료
+                AI Analyzed
               </div>
 
             </div>
@@ -82,7 +82,7 @@ const AnalysisResult: React.FC<AnalysisResultProps> = ({
           <div className={styles.heroContent}>
 
             <h1 className={styles.heroTitle}>
-              당신은 <span className={styles.heroAccent}>{bodyType.name}</span>이에요
+              You are a <span className={styles.heroAccent}>{bodyType.name}</span>
             </h1>
             <p className={styles.heroDesc}>{bodyType.description}</p>
             <div className={styles.chips}>
@@ -105,8 +105,8 @@ const AnalysisResult: React.FC<AnalysisResultProps> = ({
               <span className="material-symbols-outlined" style={{fontVariationSettings:"'FILL' 1", color:'white', fontSize:'24px'}}>styler</span>
             </div>
             <div>
-              <h2 className={styles.lookbookTitle}>AI 추천 스타일</h2>
-              <p className={styles.lookbookSubtitle}>체형과 퍼스널 컬러에 최적화된 코디 3가지</p>
+              <h2 className={styles.lookbookTitle}>AI Style Picks</h2>
+              <p className={styles.lookbookSubtitle}>3 outfits tailored for you</p>
             </div>
           </div>
         </div>
@@ -174,7 +174,7 @@ const AnalysisResult: React.FC<AnalysisResultProps> = ({
       <section className={styles.ctaSection}>
         <button className={styles.ctaBtn} onClick={onReset}>
           <span className="material-symbols-outlined" style={{fontVariationSettings:"'FILL' 1"}}>refresh</span>
-          다시 분석하기
+          Analyze Again
         </button>
       </section>
     </div>

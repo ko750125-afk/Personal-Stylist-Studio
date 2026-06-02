@@ -8,17 +8,17 @@ interface Props {
 }
 
 const analyzeSteps = [
-  { icon: '📸', text: '사진 분석 중...' },
-  { icon: '🧬', text: '체형 특성 파악 중...' },
-  { icon: '🎨', text: '퍼스널 컬러 분석 중...' },
-  { icon: '✨', text: '스타일 추천 생성 중...' },
+  { icon: '📸', text: 'Analyzing photo...' },
+  { icon: '🧬', text: 'Detecting body type...' },
+  { icon: '🎨', text: 'Analyzing colors...' },
+  { icon: '✨', text: 'Generating recommendations...' },
 ];
 
 const generateSteps = [
-  { icon: '🖼️', text: '코디 이미지 #1 생성 중...' },
-  { icon: '🖼️', text: '코디 이미지 #2 생성 중...' },
-  { icon: '🖼️', text: '코디 이미지 #3 생성 중...' },
-  { icon: '✅', text: '이미지 완성 중...' },
+  { icon: '🖼️', text: 'Generating outfit #1...' },
+  { icon: '🖼️', text: 'Generating outfit #2...' },
+  { icon: '🖼️', text: 'Generating outfit #3...' },
+  { icon: '✅', text: 'Finishing up...' },
 ];
 
 const AnalyzingLoader: React.FC<Props> = ({ stage = 'analyzing' }) => {
@@ -26,11 +26,11 @@ const AnalyzingLoader: React.FC<Props> = ({ stage = 'analyzing' }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [progress, setProgress] = useState(stage === 'generating' ? 50 : 0);
 
-  const title = stage === 'generating' ? '코디 이미지 생성 중' : 'AI가 분석하고 있어요';
+  const title = stage === 'generating' ? 'Generating outfits' : 'AI is analyzing';
   const subtitle =
     stage === 'generating'
-      ? '맞춤 코디 이미지를 만들고 있습니다 (약 20~30초)'
-      : '잠시만 기다려 주세요 — 최적의 스타일을 찾고 있습니다';
+      ? 'Creating custom outfit images (approx. 20-30s)'
+      : 'Please wait — finding your best style';
 
   useEffect(() => {
     setCurrentStep(0);
@@ -68,7 +68,7 @@ const AnalyzingLoader: React.FC<Props> = ({ stage = 'analyzing' }) => {
 
         {/* Stage badge */}
         <div className={styles.stageBadge}>
-          {stage === 'generating' ? '🖼️ 이미지 생성' : '🤖 AI 분석'}
+          {stage === 'generating' ? '🖼️ Image Gen' : '🤖 AI Analysis'}
         </div>
 
         <h2 className={styles.title}>{title}</h2>

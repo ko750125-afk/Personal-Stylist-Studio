@@ -37,17 +37,17 @@ Your entire response must be a single valid JSON object.`;
 
 function getCurrentSeason(): string {
   const month = new Date().getMonth() + 1;
-  if (month >= 3 && month <= 5) return '봄 (Spring)';
-  if (month >= 6 && month <= 8) return '여름 (Summer)';
-  if (month >= 9 && month <= 11) return '가을 (Autumn)';
-  return '겨울 (Winter)';
+  if (month >= 3 && month <= 5) return 'Spring';
+  if (month >= 6 && month <= 8) return 'Summer';
+  if (month >= 9 && month <= 11) return 'Autumn';
+  return 'Winter';
 }
 
 const USER_PROMPT = (gender: string, height: string, weight: string) => `
 Analyze the provided full-body photo and return a comprehensive style analysis as JSON.
 
 User details:
-- Gender: ${gender === 'female' ? '여성 (Female)' : gender === 'male' ? '남성 (Male)' : '기타 (Other)'}
+- Gender: ${gender === 'female' ? 'Female' : gender === 'male' ? 'Male' : 'Other'}
 - Height: ${height}cm
 - Weight: ${weight}kg
 - Current Season: ${getCurrentSeason()}
@@ -55,49 +55,49 @@ User details:
 Return a JSON object with EXACTLY this structure (fill in the real values):
 {
   "bodyType": {
-    "name": "체형 이름 Korean (e.g. 모래시계형)",
+    "name": "English body type name (e.g. Hourglass)",
     "englishName": "English body type name (e.g. Hourglass)",
-    "description": "2-3 sentences in Korean describing this body type",
-    "characteristics": ["특징1", "특징2", "특징3", "특징4"]
+    "description": "2-3 sentences in English describing this body type",
+    "characteristics": ["trait 1", "trait 2", "trait 3"]
   },
   "personalColor": {
-    "season": "봄 웜톤 OR 여름 쿨톤 OR 가을 웜톤 OR 겨울 쿨톤",
+    "season": "Spring Warm OR Summer Cool OR Autumn Warm OR Winter Cool",
     "palette": ["#C4A882", "#D4B896", "#E8C9A0", "#F0DEB4", "#F5E6C8"],
-    "description": "2 sentences in Korean about personal color",
-    "keywords": ["키워드1", "키워드2", "키워드3"]
+    "description": "2 sentences in English about personal color",
+    "keywords": ["keyword 1", "keyword 2", "keyword 3"]
   },
   "styleRecommendations": [
     {
-      "title": "스타일 제목",
-      "style": "스타일 카테고리",
-      "description": "2 sentences in Korean about why this style suits the user",
-      "items": ["색상+소재+아이템 (예: 아이보리 면 오버핏 티셔츠)", "네이비 스트레이트 데님 팬츠", "화이트 캔버스 스니커즈", "베이지 미니 크로스백"],
-      "occasion": "어울리는 상황",
+      "title": "Style title in English",
+      "style": "Style category in English",
+      "description": "2 sentences in English about why this style suits the user",
+      "items": ["Color + Material + Item (e.g. Ivory cotton oversized t-shirt)", "Navy straight denim pants", "White canvas sneakers"],
+      "occasion": "Suitable occasion in English",
       "emoji": "👗",
       "imagePrompt": "A top-down flat lay photography of fashion items: [detailed english list of clothing items], matching [english personal color], clean solid light gray background, studio lighting, professional clothing arrangement, no people, no mannequins, high-end fashion editorial"
     },
     {
-      "title": "스타일 제목2",
-      "style": "스타일 카테고리2",
-      "description": "2 sentences in Korean",
-      "items": ["색상+소재+아이템명 형식으로 구체적으로", "예: 라이트블루 린넨 셔츠", "카키 와이드 치노 팬츠", "브라운 레더 로퍼"],
-      "occasion": "어울리는 상황2",
+      "title": "Style title 2 in English",
+      "style": "Style category 2 in English",
+      "description": "2 sentences in English",
+      "items": ["Color + Material + Item", "e.g. Light blue linen shirt", "Khaki wide chino pants"],
+      "occasion": "Suitable occasion 2 in English",
       "emoji": "✨",
       "imagePrompt": "A top-down flat lay photography of fashion items..."
     },
     {
-      "title": "스타일 제목3",
-      "style": "스타일 카테고리3",
-      "description": "2 sentences in Korean",
-      "items": ["색상+소재+아이템명 형식으로 구체적으로", "예: 블랙 슬림핏 슬랙스", "화이트 폴리 블라우스", "누드 스트랩 힐"],
-      "occasion": "어울리는 상황3",
+      "title": "Style title 3 in English",
+      "style": "Style category 3 in English",
+      "description": "2 sentences in English",
+      "items": ["Color + Material + Item", "e.g. Black slim fit slacks", "White poly blouse"],
+      "occasion": "Suitable occasion 3 in English",
       "emoji": "💼",
       "imagePrompt": "A top-down flat lay photography of fashion items..."
     }
   ],
-  "silhouetteTips": ["실루엣 팁1", "팁2", "팁3"],
-  "colorsTips": ["컬러 팁1", "팁2", "팁3"],
-  "avoidTips": ["피해야 할 스타일1", "팁2", "팁3"],
+  "silhouetteTips": ["Tip 1", "Tip 2", "Tip 3"],
+  "colorsTips": ["Tip 1", "Tip 2", "Tip 3"],
+  "avoidTips": ["Tip 1", "Tip 2", "Tip 3"],
   "overallScore": 92
 }
 
@@ -105,10 +105,9 @@ IMPORTANT:
 - styleRecommendations must have EXACTLY 3 complete objects
 - palette must have EXACTLY 5 valid hex color codes starting with #
 - overallScore must be an integer between 70 and 99
-- All descriptive text must be in Korean except for imagePrompt
+- All text must be in English
 - imagePrompt MUST be in English, describing a top-down flat lay of the outfit items
-- items MUST follow the format: "색상 + 소재/핏 + 아이템명" (예: "코랄 핑크 린넨 와이드 팬츠", "아이보리 오버핏 면 티셔츠")
-- items should be specific enough to search on Korean shopping sites
+- items MUST follow the format: "Color + Material/Fit + Item name" (e.g., "Coral pink linen wide pants")
 - ALL recommended clothing must be appropriate for the current season
 - Do NOT include any text before or after the JSON object
 `;
@@ -191,11 +190,11 @@ export async function analyzeStyle(
 
   while (parsed.styleRecommendations.length < 3) {
     parsed.styleRecommendations.push({
-      title: '베이직 룩',
-      style: '캐주얼',
-      description: '편안하고 세련된 기본 스타일입니다.',
-      items: ['화이트 티셔츠', '데님 팬츠', '스니커즈', '심플 백'],
-      occasion: '일상',
+      title: 'Basic Look',
+      style: 'Casual',
+      description: 'Comfortable and stylish basic look.',
+      items: ['White t-shirt', 'Denim pants', 'Sneakers', 'Simple bag'],
+      occasion: 'Daily',
       emoji: '👕',
       imagePrompt:
         'A top-down flat lay photography of a white t-shirt, blue denim pants, white sneakers, and a simple leather bag on a clean light gray background, neat clothing arrangement, fashion editorial quality, no people.',

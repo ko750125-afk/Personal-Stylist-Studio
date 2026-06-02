@@ -26,8 +26,8 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose }) => {
     setError(null);
 
     if (tab === 'signup') {
-      if (!name.trim()) return setError('이름을 입력해주세요.');
-      if (password !== confirm) return setError('비밀번호가 일치하지 않습니다.');
+      if (!name.trim()) return setError('Please enter your name.');
+      if (password !== confirm) return setError('Passwords do not match.');
     }
 
     setLoading(true);
@@ -53,28 +53,28 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose }) => {
 
         {/* Logo */}
         <div className={styles.logo}>AURA</div>
-        <p className={styles.tagline}>AI 퍼스널 스타일리스트</p>
+        <p className={styles.tagline}>AI Personal Stylist</p>
 
         {/* Tabs */}
         <div className={styles.tabs}>
           <button
             className={`${styles.tab} ${tab === 'login'  ? styles.tabActive : ''}`}
             onClick={() => switchTab('login')}
-          >로그인</button>
+          >Sign In</button>
           <button
             className={`${styles.tab} ${tab === 'signup' ? styles.tabActive : ''}`}
             onClick={() => switchTab('signup')}
-          >회원가입</button>
+          >Sign Up</button>
         </div>
 
         <form className={styles.form} onSubmit={handleSubmit} noValidate>
           {tab === 'signup' && (
             <div className={styles.field}>
-              <label className={styles.label}>이름</label>
+              <label className={styles.label}>Name</label>
               <input
                 className={styles.input}
                 type="text"
-                placeholder="홍길동"
+                placeholder="John Doe"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
@@ -84,7 +84,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose }) => {
           )}
 
           <div className={styles.field}>
-            <label className={styles.label}>이메일</label>
+            <label className={styles.label}>Email</label>
             <input
               className={styles.input}
               type="email"
@@ -97,11 +97,11 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose }) => {
           </div>
 
           <div className={styles.field}>
-            <label className={styles.label}>비밀번호</label>
+            <label className={styles.label}>Password</label>
             <input
               className={styles.input}
               type="password"
-              placeholder="6자 이상"
+              placeholder="6+ characters"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -110,11 +110,11 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose }) => {
 
           {tab === 'signup' && (
             <div className={styles.field}>
-              <label className={styles.label}>비밀번호 확인</label>
+              <label className={styles.label}>Confirm Password</label>
               <input
                 className={styles.input}
                 type="password"
-                placeholder="비밀번호 재입력"
+                placeholder="Re-enter password"
                 value={confirm}
                 onChange={(e) => setConfirm(e.target.value)}
                 required
@@ -128,15 +128,15 @@ const AuthModal: React.FC<AuthModalProps> = ({ onClose }) => {
             {loading ? (
               <span className={styles.spinner} />
             ) : (
-              tab === 'login' ? '로그인' : '회원가입'
+              tab === 'login' ? 'Sign In' : 'Sign Up'
             )}
           </button>
         </form>
 
         <p className={styles.switchText}>
-          {tab === 'login' ? '아직 계정이 없으신가요? ' : '이미 계정이 있으신가요? '}
+          {tab === 'login' ? "Don't have an account? " : "Already have an account? "}
           <button className={styles.switchLink} onClick={() => switchTab(tab === 'login' ? 'signup' : 'login')}>
-            {tab === 'login' ? '회원가입' : '로그인'}
+            {tab === 'login' ? 'Sign Up' : 'Sign In'}
           </button>
         </p>
       </div>

@@ -104,7 +104,7 @@ const PhotoUpload: React.FC<PhotoUploadProps> = ({
           onKeyDown={(e) => e.key === 'Enter' && handleClick()}
           aria-label="사진을 드래그하거나 클릭하여 업로드"
         >
-          <p className={styles.dropzoneTitle} style={{ fontSize: '1.2rem', fontWeight: 'bold', letterSpacing: '1px' }}>전신사진</p>
+          <p className={styles.dropzoneTitle} style={{ fontSize: '1.2rem', fontWeight: 'bold', letterSpacing: '1px' }}>Full Body Photo</p>
         </div>
       )}
     </div>

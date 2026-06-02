@@ -16,8 +16,8 @@ export default function HomeScreen({ onStartAnalysis }: HomeScreenProps) {
         <section className={styles.auraHero} style={{ width: '100%', paddingBottom: '0', display: 'flex', justifyContent: 'center' }}>
           <div className={styles.auraHeroContent} style={{ maxWidth: '600px', margin: '0 auto', alignItems: 'center', textAlign: 'center' }}>
             <h1 className={styles.auraHeroTitle} style={{ textAlign: 'center' }}>
-              내 체형에 맞는 <br />
-              <span className={styles.auraAccent}>스타일링 서비스</span>
+              Style made for <br />
+              <span className={styles.auraAccent}>your body</span>
             </h1>
             <div className={styles.auraHeroBtns} style={{ justifyContent: 'center', marginTop: '2rem' }}>
               <button className={styles.auraPrimaryBtn} onClick={onStartAnalysis}>

@@ -26,12 +26,12 @@ const AnalyzeButton: React.FC<AnalyzeButtonProps> = ({
         {isLoading ? (
           <span className={styles.loadingContent}>
             <span className={styles.spinner} aria-hidden="true" />
-            <span>분석 중...</span>
+            <span>Analyzing...</span>
           </span>
         ) : (
           <span className={styles.defaultContent}>
             <span className={styles.buttonIcon}>✦</span>
-            <span>분석하기</span>
+            <span>Analyze</span>
             <span className={styles.buttonArrow}>→</span>
           </span>
         )}
@@ -39,7 +39,7 @@ const AnalyzeButton: React.FC<AnalyzeButtonProps> = ({
       </button>
 
       {isDisabled && !isLoading && (
-        <p className={styles.hint}>사진과 체형 정보를 모두 입력해주세요</p>
+        <p className={styles.hint}>Please provide both photo and info</p>
       )}
     </div>
   );

@@ -49,7 +49,7 @@ export default function Header({ onLogoClick, disableScrollEffect = false }: Hea
                 {user.displayName?.[0]?.toUpperCase() ?? user.email?.[0]?.toUpperCase() ?? 'U'}
               </span>
               <span className={styles.auraUserName}>{user.displayName ?? user.email}</span>
-              <button className={styles.auraLogoutBtn} onClick={() => signOut()}>로그아웃</button>
+              <button className={styles.auraLogoutBtn} onClick={() => signOut()}>Sign Out</button>
             </div>
           ) : (
             <button className={styles.auraSignInBtn} onClick={() => setShowAuth(true)}>

@@ -38,10 +38,10 @@ const BodyMetrics: React.FC<BodyMetricsProps> = ({
       : null;
 
   const getBmiLabel = (bmi: number) => {
-    if (bmi < 18.5) return { text: '저체중', color: '#94d8ff' };
-    if (bmi < 23) return { text: '정상', color: '#7fff94' };
-    if (bmi < 25) return { text: '과체중', color: '#f5c842' };
-    return { text: '비만', color: '#ff9494' };
+    if (bmi < 18.5) return { text: 'Underweight', color: '#94d8ff' };
+    if (bmi < 23) return { text: 'Normal', color: '#7fff94' };
+    if (bmi < 25) return { text: 'Overweight', color: '#f5c842' };
+    return { text: 'Obese', color: '#ff9494' };
   };
 
   const bmiNum = bmi ? parseFloat(bmi) : null;
@@ -78,7 +78,7 @@ const BodyMetrics: React.FC<BodyMetricsProps> = ({
       <div className={styles.metricsRow}>
         <div className={styles.inputGroup}>
           <label className={styles.sectionLabel} htmlFor="input-height">
-            키
+            Height
           </label>
           <div className={styles.inputWrapper}>
             <input
@@ -99,7 +99,7 @@ const BodyMetrics: React.FC<BodyMetricsProps> = ({
 
         <div className={styles.inputGroup}>
           <label className={styles.sectionLabel} htmlFor="input-weight">
-            몸무게
+            Weight
           </label>
           <div className={styles.inputWrapper}>
             <input
@@ -123,7 +123,7 @@ const BodyMetrics: React.FC<BodyMetricsProps> = ({
       {bmi && bmiLabel && (
         <div className={styles.bmiCard}>
           <div className={styles.bmiLeft}>
-            <span className={styles.bmiTitle}>BMI 지수</span>
+            <span className={styles.bmiTitle}>BMI</span>
             <span className={styles.bmiValue}>{bmi}</span>
           </div>
           <div className={styles.bmiRight}>
