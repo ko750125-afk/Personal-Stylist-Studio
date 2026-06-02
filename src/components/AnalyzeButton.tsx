@@ -31,7 +31,7 @@ const AnalyzeButton: React.FC<AnalyzeButtonProps> = ({
         ) : (
           <span className={styles.defaultContent}>
             <span className={styles.buttonIcon}>✦</span>
-            <span>AI 스타일 분석하기</span>
+            <span>분석하기</span>
             <span className={styles.buttonArrow}>→</span>
           </span>
         )}

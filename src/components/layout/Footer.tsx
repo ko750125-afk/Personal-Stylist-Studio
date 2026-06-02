@@ -13,7 +13,7 @@ export default function Footer() {
         </div>
       </div>
       <div className={styles.auraFooterBottom} style={{ justifyContent: 'center' }}>
-        <p>© 2025 AURA STYLING. ALL RIGHTS RESERVED.</p>
+        <p>© 2026 AURA STYLING. ALL RIGHTS RESERVED.</p>
       </div>
     </footer>
   );

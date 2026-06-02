@@ -58,24 +58,12 @@ export default function InputScreen({
 
       <main className={styles.auraMain}>
         <section className={styles.auraInputSection}>
-          <div className={styles.auraInputHeader}>
-            <button className={styles.auraBackBtn} onClick={onGoHome}>
-              <span className="material-symbols-outlined">arrow_back</span>
-              <span>Back</span>
-            </button>
-            <h2 className={styles.auraInputTitle}>당신의 스타일을 알려주세요</h2>
-            <p className={styles.auraInputSub}>
-              정확한 체형 분석을 위해 전신 사진과 기본 신체 정보를 입력해 주세요.
-            </p>
-          </div>
+
 
           <div className={styles.auraInputGrid}>
             <div className={styles.auraInputLeft}>
               <div className={styles.auraCard}>
-                <div className={styles.auraCardHeader}>
-                  <span className="material-symbols-outlined" style={{ color: 'var(--aura-primary)' }}>photo_camera</span>
-                  <h3 className={styles.auraCardTitle}>전신 사진 업로드</h3>
-                </div>
+
                 <PhotoUpload
                   photo={form.photo}
                   preview={form.photoPreview}
@@ -92,10 +80,7 @@ export default function InputScreen({
 
             <div className={styles.auraInputRight}>
               <div className={styles.auraCard}>
-                <div className={styles.auraCardHeader}>
-                  <span className="material-symbols-outlined" style={{ color: 'var(--aura-secondary)' }}>straighten</span>
-                  <h3 className={styles.auraCardTitle}>신체 정보</h3>
-                </div>
+
                 <BodyMetrics
                   height={form.height}
                   weight={form.weight}
@@ -119,10 +104,7 @@ export default function InputScreen({
                   disabled={!form.photo || !form.height || !form.weight || !form.gender || isLoading}
                   isAnalyzing={isLoading}
                 />
-                <p className={styles.auraActionNote}>
-                  <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>lock</span>
-                  업로드된 사진은 분석 후 즉시 삭제되며 저장되지 않습니다.
-                </p>
+
               </div>
             </div>
           </div>

@@ -56,10 +56,7 @@ const PhotoUpload: React.FC<PhotoUploadProps> = ({
 
   return (
     <div className={styles.container}>
-      <label className={styles.label}>
-        <span className={styles.labelIcon}>📸</span>
-        내 사진 업로드
-      </label>
+
 
       <input
         ref={inputRef}
@@ -107,11 +104,7 @@ const PhotoUpload: React.FC<PhotoUploadProps> = ({
           onKeyDown={(e) => e.key === 'Enter' && handleClick()}
           aria-label="사진을 드래그하거나 클릭하여 업로드"
         >
-          <div className={styles.dropzoneIcon}>
-            <span className="material-symbols-outlined" style={{fontSize:'32px', color:'#754c97'}}>upload_file</span>
-          </div>
-          <p className={styles.dropzoneTitle}>사진을 드래그하거나 클릭하세요</p>
-          <p className={styles.dropzoneSubtitle}>JPG, PNG, WEBP · 전신 사진 권장</p>
+          <p className={styles.dropzoneTitle}>카메라(모바일버전), 이미지업로드(컴퓨터버전)</p>
         </div>
       )}
     </div>

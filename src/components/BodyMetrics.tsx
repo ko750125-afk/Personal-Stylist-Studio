@@ -48,19 +48,15 @@ const BodyMetrics: React.FC<BodyMetricsProps> = ({
   const bmiLabel = bmiNum ? getBmiLabel(bmiNum) : null;
 
   const genderOptions = [
-    { value: 'female' as const, label: '여성', icon: '♀' },
-    { value: 'male' as const, label: '남성', icon: '♂' },
-    { value: 'other' as const, label: '기타', icon: '⚬' },
+    { value: 'female' as const, label: 'WOMAN' },
+    { value: 'male' as const, label: 'MAN' },
   ];
 
   return (
     <div className={styles.container}>
       {/* Gender Selection */}
       <div className={styles.section}>
-        <label className={styles.sectionLabel}>
-          <span className={styles.labelIcon}>👤</span>
-          성별
-        </label>
+
         <div className={styles.genderGroup} role="group" aria-label="성별 선택">
           {genderOptions.map((opt) => (
             <button
@@ -71,7 +67,7 @@ const BodyMetrics: React.FC<BodyMetricsProps> = ({
               onClick={() => onGenderChange(opt.value)}
               aria-pressed={gender === opt.value}
             >
-              <span className={styles.genderIcon}>{opt.icon}</span>
+
               <span>{opt.label}</span>
             </button>
           ))}
@@ -82,7 +78,6 @@ const BodyMetrics: React.FC<BodyMetricsProps> = ({
       <div className={styles.metricsRow}>
         <div className={styles.inputGroup}>
           <label className={styles.sectionLabel} htmlFor="input-height">
-            <span className={styles.labelIcon}>📏</span>
             키
           </label>
           <div className={styles.inputWrapper}>
@@ -104,7 +99,6 @@ const BodyMetrics: React.FC<BodyMetricsProps> = ({
 
         <div className={styles.inputGroup}>
           <label className={styles.sectionLabel} htmlFor="input-weight">
-            <span className={styles.labelIcon}>⚖️</span>
             몸무게
           </label>
           <div className={styles.inputWrapper}>
