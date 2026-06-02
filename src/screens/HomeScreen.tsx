@@ -8,7 +8,7 @@ interface HomeScreenProps {
 
 export default function HomeScreen({ onStartAnalysis }: HomeScreenProps) {
   return (
-    <div className={styles.auraApp}>
+    <div className={`${styles.auraApp} ${styles.bgModern}`}>
       <Header />
 
       <main className={styles.auraMain} style={{ minHeight: 'calc(100vh - 160px)', display: 'flex', alignItems: 'center' }}>

@@ -625,3 +625,14 @@
   .auraFooterGrid { grid-template-columns: 1fr; gap: 32px; }
   .auraFooterBottom { flex-direction: column; gap: 16px; text-align: center; }
 }
+
+/* --- Background Images --- */
+.bgModern {
+  background: linear-gradient(rgba(250, 248, 255, 0.75), rgba(250, 248, 255, 0.85)), url('/bg2.png') no-repeat center center fixed;
+  background-size: cover;
+}
+
+.bgSilk {
+  background: linear-gradient(rgba(250, 248, 255, 0.75), rgba(250, 248, 255, 0.85)), url('/bg3.png') no-repeat center center fixed;
+  background-size: cover;
+}

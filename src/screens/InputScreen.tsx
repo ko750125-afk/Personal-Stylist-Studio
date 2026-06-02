@@ -51,7 +51,7 @@ export default function InputScreen({
   }
 
   return (
-    <div className={styles.auraApp}>
+    <div className={`${styles.auraApp} ${styles.bgSilk}`}>
       {showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
 
       <Header onLogoClick={onGoHome} />
