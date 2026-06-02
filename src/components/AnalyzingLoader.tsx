@@ -8,17 +8,17 @@ interface Props {
 }
 
 const analyzeSteps = [
-  { icon: '📸', text: 'Analyzing photo...' },
-  { icon: '🧬', text: 'Detecting body type...' },
-  { icon: '🎨', text: 'Analyzing colors...' },
-  { icon: '✨', text: 'Generating recommendations...' },
+  { text: 'Analyzing photo...' },
+  { text: 'Detecting body type...' },
+  { text: 'Analyzing colors...' },
+  { text: 'Generating recommendations...' },
 ];
 
 const generateSteps = [
-  { icon: '🖼️', text: 'Generating outfit #1...' },
-  { icon: '🖼️', text: 'Generating outfit #2...' },
-  { icon: '🖼️', text: 'Generating outfit #3...' },
-  { icon: '✅', text: 'Finishing up...' },
+  { text: 'Generating outfit #1...' },
+  { text: 'Generating outfit #2...' },
+  { text: 'Generating outfit #3...' },
+  { text: 'Finishing up...' },
 ];
 
 const AnalyzingLoader: React.FC<Props> = ({ stage = 'analyzing' }) => {
@@ -68,7 +68,7 @@ const AnalyzingLoader: React.FC<Props> = ({ stage = 'analyzing' }) => {
 
         {/* Stage badge */}
         <div className={styles.stageBadge}>
-          {stage === 'generating' ? '🖼️ Image Gen' : '🤖 AI Analysis'}
+          {stage === 'generating' ? 'Image Generation' : 'Analysis'}
         </div>
 
         <h2 className={styles.title}>{title}</h2>
@@ -81,7 +81,6 @@ const AnalyzingLoader: React.FC<Props> = ({ stage = 'analyzing' }) => {
               key={i}
               className={`${styles.step} ${i <= currentStep ? styles.stepActive : ''} ${i === currentStep ? styles.stepCurrent : ''}`}
             >
-              <span className={styles.stepIcon}>{step.icon}</span>
               <span className={styles.stepText}>{step.text}</span>
               {i < currentStep && <span className={styles.stepCheck}>✓</span>}
               {i === currentStep && <span className={styles.stepDots}>...</span>}
