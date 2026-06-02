@@ -68,13 +68,34 @@ const AnalysisResult: React.FC<AnalysisResultProps> = ({
         <div className={styles.heroGrid}>
           {/* Photo */}
           <div className={styles.heroPhoto}>
-            <div className={styles.photoCard}>
-              <img src={photoPreview} alt="분석된 사진" className={styles.photoImg} />
-              <div className={styles.photoBadge}>
-                <span className="material-symbols-outlined" style={{fontSize:'18px', fontVariationSettings:"'FILL' 1"}}>auto_awesome</span>
-                AI Analyzed
+            <div className={styles.auraGlowContainer}>
+              {personalColor.palette && personalColor.palette.length > 0 && (
+                <div
+                  className={styles.auraGlowBg}
+                  style={{
+                    background: `linear-gradient(135deg, ${personalColor.palette.join(', ')})`
+                  }}
+                />
+              )}
+              <div className={styles.photoCard}>
+                {saveStatus !== 'idle' && (
+                  <div className={styles.saveBadge} data-status={saveStatus}>
+                    <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>
+                      {saveStatus === 'saving' ? 'sync'
+                       : saveStatus === 'saved' ? 'check_circle'
+                       : 'error'}
+                    </span>
+                    {saveStatus === 'saving' ? 'Saving...'
+                     : saveStatus === 'saved' ? 'Saved'
+                     : 'Save Error'}
+                  </div>
+                )}
+                <img src={photoPreview} alt="분석된 사진" className={styles.photoImg} />
+                <div className={styles.photoBadge}>
+                  <span className="material-symbols-outlined" style={{fontSize:'18px', fontVariationSettings:"'FILL' 1"}}>auto_awesome</span>
+                  AI Analyzed
+                </div>
               </div>
-
             </div>
           </div>
 

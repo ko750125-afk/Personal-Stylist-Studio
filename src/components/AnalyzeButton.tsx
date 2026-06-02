@@ -19,7 +19,7 @@ const AnalyzeButton: React.FC<AnalyzeButtonProps> = ({
         type="button"
         className={`${styles.button} ${isLoading ? styles.loading : ''}`}
         onClick={onClick}
-        disabled={isLoading}
+        disabled={isLoading || isDisabled}
         aria-label="AI 스타일 분석 시작"
         aria-busy={isLoading}
       >

@@ -39,8 +39,8 @@ export default function InputScreen({
   }, []);
 
   const handleAnalyzeClick = () => {
-    if (!form.photo || !form.height || !form.weight || !form.gender || !form.avatarAge || !form.avatarRace || !form.avatarHair) {
-      alert("Please provide all required information (Photo, Gender, Height, Weight, Avatar Settings).");
+    if (!form.photo || !form.height || !form.weight || !form.gender) {
+      alert("Please provide all required information (Photo, Gender, Height, Weight).");
       return;
     }
     if (!user) {
@@ -89,15 +89,9 @@ export default function InputScreen({
                   height={form.height}
                   weight={form.weight}
                   gender={form.gender}
-                  avatarAge={form.avatarAge}
-                  avatarRace={form.avatarRace}
-                  avatarHair={form.avatarHair}
                   onHeightChange={(val) => setForm(prev => ({ ...prev, height: val }))}
                   onWeightChange={(val) => setForm(prev => ({ ...prev, weight: val }))}
                   onGenderChange={(val) => setForm(prev => ({ ...prev, gender: val }))}
-                  onAvatarAgeChange={(val) => setForm(prev => ({ ...prev, avatarAge: val }))}
-                  onAvatarRaceChange={(val) => setForm(prev => ({ ...prev, avatarRace: val }))}
-                  onAvatarHairChange={(val) => setForm(prev => ({ ...prev, avatarHair: val }))}
                 />
               </div>
 

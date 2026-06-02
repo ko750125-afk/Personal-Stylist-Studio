@@ -642,9 +642,48 @@
   .lookbookItemGrid { grid-template-columns: 1fr; }
 }
 
+@keyframes spin { to { transform: rotate(360deg); } }
+
 @media (max-width: 640px) {
   .colorGrid { grid-template-columns: repeat(2, 1fr); }
   .heroTitle { font-size: 28px; }
 }
 
-@keyframes spin { to { transform: rotate(360deg); } }
+/* ── Personal Color Aura Glow ── */
+.auraGlowContainer {
+  position: relative;
+  padding: 12px;
+}
+
+.auraGlowBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 24px;
+  filter: blur(28px);
+  opacity: 0.6;
+  z-index: 1;
+  animation: pulseGlow 4s ease-in-out infinite alternate;
+}
+
+.photoCard {
+  position: relative;
+  z-index: 2;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  background: white;
+}
+
+@keyframes pulseGlow {
+  0% {
+    transform: scale(0.97);
+    opacity: 0.45;
+  }
+  100% {
+    transform: scale(1.03);
+    opacity: 0.75;
+  }
+}
