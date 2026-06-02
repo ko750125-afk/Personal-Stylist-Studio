@@ -43,7 +43,7 @@ function getCurrentSeason(): string {
   return 'Winter';
 }
 
-const USER_PROMPT = (gender: string, height: string, weight: string) => `
+const USER_PROMPT = (gender: string, height: string, weight: string, avatarAge: string, avatarRace: string, avatarHair: string) => `
 Analyze the provided full-body photo and return a comprehensive style analysis as JSON.
 
 User details:
@@ -51,6 +51,9 @@ User details:
 - Height: ${height}cm
 - Weight: ${weight}kg
 - Current Season: ${getCurrentSeason()}
+- Avatar Age: ${avatarAge}
+- Avatar Race: ${avatarRace}
+- Avatar Hair: ${avatarHair}
 
 Return a JSON object with EXACTLY this structure (fill in the real values):
 {
@@ -74,7 +77,7 @@ Return a JSON object with EXACTLY this structure (fill in the real values):
       "items": ["Color + Material + Item (e.g. Ivory cotton oversized t-shirt)", "Navy straight denim pants", "White canvas sneakers"],
       "occasion": "Suitable occasion in English",
       "emoji": "👗",
-      "imagePrompt": "A top-down flat lay photography of fashion items: [detailed english list of clothing items], matching [english personal color], clean solid light gray background, studio lighting, professional clothing arrangement, no people, no mannequins, high-end fashion editorial"
+      "imagePrompt": "A full-body fashion photography of a ${avatarAge} ${avatarRace} ${gender === 'female' ? 'female' : 'male'} model with ${avatarHair} hair, having a [English body type] body shape, wearing [detailed english list of clothing items], posing naturally at [fitting background/location for the occasion], wearing stylish sunglasses, highly detailed fashion editorial"
     },
     {
       "title": "Style title 2 in English",
@@ -83,7 +86,7 @@ Return a JSON object with EXACTLY this structure (fill in the real values):
       "items": ["Color + Material + Item", "e.g. Light blue linen shirt", "Khaki wide chino pants"],
       "occasion": "Suitable occasion 2 in English",
       "emoji": "✨",
-      "imagePrompt": "A top-down flat lay photography of fashion items..."
+      "imagePrompt": "A full-body fashion photography of a ${avatarAge} ${avatarRace} ${gender === 'female' ? 'female' : 'male'} model with ${avatarHair} hair, having a [English body type] body shape, wearing [detailed english list of clothing items], posing naturally at [fitting background/location for the occasion], wearing stylish sunglasses, highly detailed fashion editorial"
     },
     {
       "title": "Style title 3 in English",
@@ -92,7 +95,7 @@ Return a JSON object with EXACTLY this structure (fill in the real values):
       "items": ["Color + Material + Item", "e.g. Black slim fit slacks", "White poly blouse"],
       "occasion": "Suitable occasion 3 in English",
       "emoji": "💼",
-      "imagePrompt": "A top-down flat lay photography of fashion items..."
+      "imagePrompt": "A full-body fashion photography of a ${avatarAge} ${avatarRace} ${gender === 'female' ? 'female' : 'male'} model with ${avatarHair} hair, having a [English body type] body shape, wearing [detailed english list of clothing items], posing naturally at [fitting background/location for the occasion], wearing stylish sunglasses, highly detailed fashion editorial"
     }
   ],
   "silhouetteTips": ["Tip 1", "Tip 2", "Tip 3"],
@@ -106,7 +109,7 @@ IMPORTANT:
 - palette must have EXACTLY 5 valid hex color codes starting with #
 - overallScore must be an integer between 70 and 99
 - All text must be in English
-- imagePrompt MUST be in English, describing a top-down flat lay of the outfit items
+- imagePrompt MUST be in English, describing a full-body fashion photography of the avatar model wearing the outfit in a suitable background
 - items MUST follow the format: "Color + Material/Fit + Item name" (e.g., "Coral pink linen wide pants")
 - ALL recommended clothing must be appropriate for the current season
 - Do NOT include any text before or after the JSON object
@@ -138,7 +141,10 @@ export async function analyzeStyle(
   imageBase64: string,
   gender: string,
   height: string,
-  weight: string
+  weight: string,
+  avatarAge: string,
+  avatarRace: string,
+  avatarHair: string
 ): Promise<BodyAnalysisResult> {
   const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 
@@ -162,7 +168,7 @@ export async function analyzeStyle(
         role: 'user',
         parts: [
           { inlineData: { mimeType, data } },
-          { text: USER_PROMPT(gender, height, weight) },
+          { text: USER_PROMPT(gender, height, weight, avatarAge, avatarRace, avatarHair) },
         ],
       },
     ],
@@ -197,7 +203,7 @@ export async function analyzeStyle(
       occasion: 'Daily',
       emoji: '👕',
       imagePrompt:
-        'A top-down flat lay photography of a white t-shirt, blue denim pants, white sneakers, and a simple leather bag on a clean light gray background, neat clothing arrangement, fashion editorial quality, no people.',
+        'A full-body fashion photography of a fashion model wearing a white t-shirt, blue denim pants, white sneakers, and a simple leather bag, posing in a modern street, wearing stylish sunglasses, fashion editorial quality.',
     });
   }
 
@@ -212,7 +218,7 @@ function buildImagePrompt(card: StyleCard): string {
   if (card.imagePrompt && card.imagePrompt.length > 10) {
     return card.imagePrompt.replace(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g, '').replace(/\s+/g, ' ').trim();
   }
-  return `A top-down flat lay photography of fashion outfit: ${card.items.join(', ')}, clean solid light gray background, studio lighting, no people, no mannequins, professional fashion editorial.`;
+  return `A full-body fashion photography of a model wearing: ${card.items.join(', ')}, natural background, wearing stylish sunglasses, professional fashion editorial.`;
 }
 
 export async function generateOutfitImage(

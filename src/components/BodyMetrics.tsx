@@ -8,6 +8,12 @@ interface BodyMetricsProps {
   onHeightChange: (value: string) => void;
   onWeightChange: (value: string) => void;
   onGenderChange: (value: 'male' | 'female' | 'other') => void;
+  avatarAge?: string;
+  avatarRace?: string;
+  avatarHair?: string;
+  onAvatarAgeChange?: (value: string) => void;
+  onAvatarRaceChange?: (value: string) => void;
+  onAvatarHairChange?: (value: string) => void;
 }
 
 const BodyMetrics: React.FC<BodyMetricsProps> = ({
@@ -17,6 +23,12 @@ const BodyMetrics: React.FC<BodyMetricsProps> = ({
   onHeightChange,
   onWeightChange,
   onGenderChange,
+  avatarAge,
+  avatarRace,
+  avatarHair,
+  onAvatarAgeChange,
+  onAvatarRaceChange,
+  onAvatarHairChange,
 }) => {
   const handleHeightInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value.replace(/[^0-9.]/g, '');
@@ -50,6 +62,28 @@ const BodyMetrics: React.FC<BodyMetricsProps> = ({
   const genderOptions = [
     { value: 'female' as const, label: 'WOMAN' },
     { value: 'male' as const, label: 'MAN' },
+  ];
+
+  const ageOptions = [
+    { value: '10-year-old', label: '10대' },
+    { value: '20-year-old', label: '20대' },
+    { value: '30-year-old', label: '30대' },
+    { value: '40-year-old', label: '40대 이상' },
+  ];
+
+  const raceOptions = [
+    { value: 'East Asian', label: '동양인' },
+    { value: 'South Asian', label: '동남아시아인' },
+    { value: 'Caucasian', label: '서양인' },
+    { value: 'Black', label: '흑인' },
+  ];
+
+  const hairOptions = [
+    { value: 'short', label: '숏컷' },
+    { value: 'bob', label: '단발' },
+    { value: 'long', label: '긴머리' },
+    { value: 'tied up', label: '묶은머리' },
+    { value: 'wavy', label: '웨이브' },
   ];
 
   return (
@@ -133,6 +167,61 @@ const BodyMetrics: React.FC<BodyMetricsProps> = ({
             >
               {bmiLabel.text}
             </span>
+          </div>
+        </div>
+      )}
+
+      {/* Avatar Settings */}
+      {onAvatarAgeChange && onAvatarRaceChange && onAvatarHairChange && (
+        <div className={styles.avatarSection}>
+          <h3 className={styles.avatarTitle}>가상 모델(아바타) 설정</h3>
+          
+          <div className={styles.section}>
+            <span className={styles.sectionLabel} style={{ fontSize: '13px', color: '#7d7480' }}>연령대</span>
+            <div className={styles.avatarGroup}>
+              {ageOptions.map(opt => (
+                <button
+                  key={opt.value}
+                  type="button"
+                  className={`${styles.avatarBtn} ${avatarAge === opt.value ? styles.avatarBtnActive : ''}`}
+                  onClick={() => onAvatarAgeChange(opt.value)}
+                >
+                  {opt.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className={styles.section}>
+            <span className={styles.sectionLabel} style={{ fontSize: '13px', color: '#7d7480' }}>인종/분위기</span>
+            <div className={styles.avatarGroup}>
+              {raceOptions.map(opt => (
+                <button
+                  key={opt.value}
+                  type="button"
+                  className={`${styles.avatarBtn} ${avatarRace === opt.value ? styles.avatarBtnActive : ''}`}
+                  onClick={() => onAvatarRaceChange(opt.value)}
+                >
+                  {opt.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className={styles.section}>
+            <span className={styles.sectionLabel} style={{ fontSize: '13px', color: '#7d7480' }}>헤어스타일</span>
+            <div className={styles.avatarGroup}>
+              {hairOptions.map(opt => (
+                <button
+                  key={opt.value}
+                  type="button"
+                  className={`${styles.avatarBtn} ${avatarHair === opt.value ? styles.avatarBtnActive : ''}`}
+                  onClick={() => onAvatarHairChange(opt.value)}
+                >
+                  {opt.label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       )}

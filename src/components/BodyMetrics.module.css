@@ -126,3 +126,50 @@
   font-weight: 700;
   letter-spacing: 0.04em;
 }
+
+/* Avatar UI */
+.avatarSection {
+  margin-top: 8px;
+  padding-top: 24px;
+  border-top: 1px dashed rgba(206,195,208,0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.avatarTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1b20;
+}
+
+.avatarGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.avatarBtn {
+  padding: 8px 16px;
+  border: 1px solid rgba(206,195,208,0.4);
+  border-radius: 9999px;
+  background: rgba(255,255,255,0.5);
+  color: #4b444f;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.avatarBtn:hover {
+  background: rgba(242,218,255,0.4);
+  border-color: #754c97;
+  color: #754c97;
+}
+
+.avatarBtnActive {
+  background: #f2daff !important;
+  border-color: #754c97 !important;
+  color: #2e004e !important;
+  font-weight: 700;
+}

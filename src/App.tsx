@@ -18,6 +18,9 @@ export interface FormState {
   height: string;
   weight: string;
   gender: 'male' | 'female' | 'other' | '';
+  avatarAge: string;
+  avatarRace: string;
+  avatarHair: string;
 }
 
 const EMPTY_FORM: FormState = {
@@ -26,6 +29,9 @@ const EMPTY_FORM: FormState = {
   height: '',
   weight: '',
   gender: '',
+  avatarAge: '',
+  avatarRace: '',
+  avatarHair: '',
 };
 
 // ─── App ────────────────────────────────────────────────────────
@@ -59,7 +65,10 @@ export default function App() {
         form.photoPreview,
         form.gender,
         form.height,
-        form.weight
+        form.weight,
+        form.avatarAge,
+        form.avatarRace,
+        form.avatarHair
       );
       setResult(analysisResult);
 
