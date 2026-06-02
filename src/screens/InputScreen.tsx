@@ -39,6 +39,10 @@ export default function InputScreen({
   }, []);
 
   const handleAnalyzeClick = () => {
+    if (!form.photo || !form.height || !form.weight || !form.gender) {
+      alert("Please provide all required information (Photo, Gender, Height, Weight).");
+      return;
+    }
     if (!user) {
       setShowAuth(true);
       return;
@@ -101,8 +105,8 @@ export default function InputScreen({
               <div className={styles.auraActionCard}>
                 <AnalyzeButton
                   onClick={handleAnalyzeClick}
-                  disabled={!form.photo || !form.height || !form.weight || !form.gender || isLoading}
-                  isAnalyzing={isLoading}
+                  isLoading={isLoading}
+                  isDisabled={false}
                 />
 
               </div>

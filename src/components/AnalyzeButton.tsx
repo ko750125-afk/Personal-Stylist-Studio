@@ -19,7 +19,7 @@ const AnalyzeButton: React.FC<AnalyzeButtonProps> = ({
         type="button"
         className={`${styles.button} ${isLoading ? styles.loading : ''}`}
         onClick={onClick}
-        disabled={isDisabled || isLoading}
+        disabled={isLoading}
         aria-label="AI 스타일 분석 시작"
         aria-busy={isLoading}
       >
@@ -38,9 +38,7 @@ const AnalyzeButton: React.FC<AnalyzeButtonProps> = ({
         <div className={styles.glow} aria-hidden="true" />
       </button>
 
-      {isDisabled && !isLoading && (
-        <p className={styles.hint}>Please provide both photo and info</p>
-      )}
+
     </div>
   );
 };
