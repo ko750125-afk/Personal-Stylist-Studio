@@ -1,16 +1,18 @@
 import { useState, useRef } from 'react';
 import HomeScreen from './screens/HomeScreen';
 import InputScreen from './screens/InputScreen';
+import HistoryScreen from './screens/HistoryScreen';
 import AnalysisResult from './components/AnalysisResult';
 import Header from './components/layout/Header';
 import { analyzeStyle, generateAllOutfitImages } from './services/openaiService';
 import type { BodyAnalysisResult } from './services/openaiService';
 import { saveAnalysisResult } from './services/resultService';
+import type { SavedResult } from './services/resultService';
 import { useAuth } from './contexts/AuthContext';
 import styles from './App.module.css';
 
 // ─── Types ──────────────────────────────────────────────────────
-type AppScreen = 'home' | 'input' | 'analyzing' | 'generating' | 'result';
+type AppScreen = 'home' | 'input' | 'analyzing' | 'generating' | 'result' | 'history';
 
 export interface FormState {
   photo: File | null;
@@ -78,7 +80,7 @@ export default function App() {
       if (user && form.photo && !saveAttempted.current) {
         saveAttempted.current = true;
         setSaveStatus('saving');
-        saveAnalysisResult(user.uid, analysisResult, form.photo)
+        saveAnalysisResult(user.uid, analysisResult, form.photo, images)
           .then(() => setSaveStatus('saved'))
           .catch((e) => {
             console.warn('[App] 결과 저장 실패:', e);
@@ -102,15 +104,40 @@ export default function App() {
     saveAttempted.current = false;
   };
 
+  const handleHistorySelect = (saved: SavedResult) => {
+    setResult(saved.result);
+    setOutfitImages(saved.outfitImages);
+    setForm((prev) => ({
+      ...prev,
+      photoPreview: saved.photoUrl,
+    }));
+    setScreen('result');
+  };
+
   // ─── Screens ──────────────────────────────────────────────────
   if (screen === 'home') {
-    return <HomeScreen onStartAnalysis={() => setScreen('input')} />;
+    return (
+      <HomeScreen
+        onStartAnalysis={() => setScreen('input')}
+        onHistoryClick={() => setScreen('history')}
+      />
+    );
+  }
+
+  if (screen === 'history' && user) {
+    return (
+      <HistoryScreen
+        uid={user.uid}
+        onSelect={handleHistorySelect}
+        onBack={() => setScreen('home')}
+      />
+    );
   }
 
   if (screen === 'result' && result && form.photoPreview) {
     return (
       <div className={styles.auraApp}>
-        <Header onLogoClick={handleReset} disableScrollEffect />
+        <Header onLogoClick={handleReset} onHistoryClick={() => setScreen('history')} disableScrollEffect />
         <main style={{ paddingTop: '80px' }}>
           <AnalysisResult
             result={result}
@@ -139,6 +166,7 @@ export default function App() {
       isLoading={screen === 'analyzing'}
       onGoHome={() => setScreen('home')}
       onAnalyze={handleAnalyze}
+      onHistoryClick={() => setScreen('history')}
     />
   );
 }

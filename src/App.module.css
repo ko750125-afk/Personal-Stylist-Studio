@@ -268,6 +268,24 @@
   white-space: nowrap;
 }
 
+.auraHistoryBtn {
+  background: none;
+  border: 1px solid #754c97;
+  border-radius: 9999px;
+  color: #754c97;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 16px;
+  cursor: pointer;
+  margin-right: 8px;
+  transition: background-color 0.2s, color 0.2s;
+}
+.auraHistoryBtn:hover {
+  background-color: #754c97;
+  color: white;
+}
+
 .auraLogoutBtn {
   background: rgba(206,195,208,0.3);
   border: 1px solid var(--aura-outline-variant);

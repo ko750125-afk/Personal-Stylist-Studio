@@ -8,7 +8,15 @@ interface AnalysisResultProps {
   outfitImages?: (string | null)[];
   onReset: () => void;
   saveStatus?: 'idle' | 'saving' | 'saved' | 'error';
+  expiresAt?: Date;
 }
+
+const formatDate = (date: Date) => {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, '0');
+  const d = String(date.getDate()).padStart(2, '0');
+  return `${y}.${m}.${d}`;
+};
 
 
 
@@ -38,7 +46,7 @@ const StyleImage: React.FC<{ src: string; alt: string; className: string }> = ({
 };
 
 const AnalysisResult: React.FC<AnalysisResultProps> = ({
-  result, photoPreview, outfitImages = [], onReset, saveStatus = 'idle',
+  result, photoPreview, outfitImages = [], onReset, saveStatus = 'idle', expiresAt,
 }) => {
   const { bodyType, personalColor, styleRecommendations } = result;
   const containerRef = useRef<HTMLDivElement>(null);
@@ -111,6 +119,12 @@ const AnalysisResult: React.FC<AnalysisResultProps> = ({
                 <span key={c} className={styles.chip}>{c}</span>
               ))}
             </div>
+            {expiresAt && (
+              <div className={styles.expiryNotice}>
+                <span className="material-symbols-outlined">schedule</span>
+                <span>이 스타일 진단 결과와 이미지들은 2주간 보관되며, <strong>{formatDate(expiresAt)}</strong>에 자동 소멸됩니다.</span>
+              </div>
+            )}
           </div>
         </div>
       </header>

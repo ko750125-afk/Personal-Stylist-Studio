@@ -19,6 +19,7 @@ interface InputScreenProps {
   isLoading: boolean;
   onGoHome: () => void;
   onAnalyze: () => void;
+  onHistoryClick: () => void;
 }
 
 export default function InputScreen({
@@ -29,7 +30,8 @@ export default function InputScreen({
   analysisStage,
   isLoading,
   onGoHome,
-  onAnalyze
+  onAnalyze,
+  onHistoryClick
 }: InputScreenProps) {
   const { user } = useAuth();
   const [showAuth, setShowAuth] = useState(false);
@@ -58,7 +60,7 @@ export default function InputScreen({
     <div className={`${styles.auraApp} ${styles.bgSilk}`}>
       {showAuth && <AuthModal onClose={() => setShowAuth(false)} />}
 
-      <Header onLogoClick={onGoHome} />
+      <Header onLogoClick={onGoHome} onHistoryClick={onHistoryClick} />
 
       <main className={styles.auraMain} style={{ minHeight: 'calc(100vh - 160px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <section className={styles.auraInputSection} style={{ width: '100%' }}>

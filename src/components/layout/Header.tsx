@@ -6,10 +6,11 @@ import styles from '../../App.module.css';
 
 interface HeaderProps {
   onLogoClick?: () => void;
+  onHistoryClick?: () => void;
   disableScrollEffect?: boolean;
 }
 
-export default function Header({ onLogoClick, disableScrollEffect = false }: HeaderProps) {
+export default function Header({ onLogoClick, onHistoryClick, disableScrollEffect = false }: HeaderProps) {
   const { user } = useAuth();
   const [isScrolled, setIsScrolled] = useState(false);
   const [showAuth, setShowAuth] = useState(false);
@@ -45,6 +46,9 @@ export default function Header({ onLogoClick, disableScrollEffect = false }: Hea
           </span>
           {user ? (
             <div className={styles.auraUserNav}>
+              {onHistoryClick && (
+                <button className={styles.auraHistoryBtn} onClick={onHistoryClick}>My History</button>
+              )}
               <span className={styles.auraUserAvatar}>
                 {user.displayName?.[0]?.toUpperCase() ?? user.email?.[0]?.toUpperCase() ?? 'U'}
               </span>

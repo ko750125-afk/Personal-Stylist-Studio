@@ -39,8 +39,8 @@ export const uploadStyleImage = async (uid: string, file: File): Promise<UploadR
   await uploadBytes(storageRef, compressed, { contentType: 'image/jpeg' });
   const downloadUrl = await getDownloadURL(storageRef);
 
-  // Firestore에 메타데이터 기록 (30일 후 만료 추적용)
-  const expiresAt = Timestamp.fromDate(new Date(timestamp + 30 * 24 * 60 * 60 * 1000));
+  // Firestore에 메타데이터 기록 (2주(14일) 후 만료 추적용)
+  const expiresAt = Timestamp.fromDate(new Date(timestamp + 14 * 24 * 60 * 60 * 1000));
   const docRef = await addDoc(collection(db, 'stylist_images'), {
     uid,
     storagePath,
@@ -50,6 +50,37 @@ export const uploadStyleImage = async (uid: string, file: File): Promise<UploadR
   });
 
   return { downloadUrl, storagePath, docId: docRef.id };
+};
+
+/**
+ * Base64 데이터를 Firebase Storage에 업로드 (2주 만료 메타데이터 기록)
+ */
+export const uploadBase64Image = async (
+  uid: string,
+  base64Data: string,
+  pathPrefix: string
+): Promise<string> => {
+  const response = await fetch(base64Data);
+  const blob = await response.blob();
+  const timestamp = Date.now();
+  const randomId = Math.floor(Math.random() * 100000);
+  const storagePath = `users/${uid}/${pathPrefix}/${timestamp}_${randomId}.jpg`;
+  const storageRef = ref(storage, storagePath);
+
+  await uploadBytes(storageRef, blob, { contentType: 'image/jpeg' });
+  const downloadUrl = await getDownloadURL(storageRef);
+
+  // 14일 만료 메타데이터 동일 등록
+  const expiresAt = Timestamp.fromDate(new Date(timestamp + 14 * 24 * 60 * 60 * 1000));
+  await addDoc(collection(db, 'stylist_images'), {
+    uid,
+    storagePath,
+    downloadUrl,
+    uploadedAt: serverTimestamp(),
+    expiresAt,
+  });
+
+  return downloadUrl;
 };
 
 /** Storage + Firestore 동시 삭제 */

@@ -4,12 +4,13 @@ import styles from '../App.module.css';
 
 interface HomeScreenProps {
   onStartAnalysis: () => void;
+  onHistoryClick: () => void;
 }
 
-export default function HomeScreen({ onStartAnalysis }: HomeScreenProps) {
+export default function HomeScreen({ onStartAnalysis, onHistoryClick }: HomeScreenProps) {
   return (
     <div className={`${styles.auraApp} ${styles.bgModern}`}>
-      <Header />
+      <Header onHistoryClick={onHistoryClick} />
 
       <main className={styles.auraMain} style={{ minHeight: 'calc(100vh - 160px)', display: 'flex', alignItems: 'center' }}>
         {/* Hero */}

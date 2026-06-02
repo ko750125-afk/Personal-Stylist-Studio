@@ -687,3 +687,27 @@
     opacity: 0.75;
   }
 }
+
+.expiryNotice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(117,76,151,0.06);
+  border: 1px dashed rgba(117,76,151,0.2);
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-top: 24px;
+  font-size: 14px;
+  color: #5c347d;
+  line-height: 1.5;
+  max-width: 540px;
+}
+.expiryNotice strong {
+  font-weight: 700;
+  color: #ec3e86;
+}
+.expiryNotice .material-symbols-outlined {
+  font-size: 18px;
+  color: #754c97;
+  flex-shrink: 0;
+}
