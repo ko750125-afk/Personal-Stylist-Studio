@@ -27,14 +27,16 @@ export async function saveAnalysisResult(
   uid: string,
   result: BodyAnalysisResult,
   photoFile: File,
-  outfitImages: (string | null)[]
+  outfitImages?: (string | null)[]
 ): Promise<SavedResult> {
   // 1. 사용자 사진 업로드 (압축 → Storage → 메타데이터)
   const upload = await uploadStyleImage(uid, photoFile);
 
+  const outfitUrls = outfitImages || [];
+
   // 2. 가상 아바타 이미지들 중 Base64는 Storage에 업로드하여 퍼블릭 URL 획득
   const uploadedOutfitUrls = await Promise.all(
-    outfitImages.map(async (img) => {
+    outfitUrls.map(async (img) => {
       if (!img) return null;
       if (img.startsWith('data:')) {
         // Base64 형식은 Storage 업로드
